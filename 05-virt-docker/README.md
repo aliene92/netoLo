@@ -26,3 +26,7 @@
  - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/hostconfig.png) на скриншот 7: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/hostconfig.png
 
 ## Задача 4
+
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t4/MarkovAM-t4.png) на скриншот 1: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t4/MarkovAM-t4.png
+
+## Задача 5
