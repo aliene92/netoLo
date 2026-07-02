@@ -2,4 +2,4 @@
 
 ## Задача 1
 ### ответ
-[https://hub.docker.com/repository/docker/aliene92/custom-nginx/general]
+[ https://hub.docker.com/repository/docker/aliene92/custom-nginx/general ]
