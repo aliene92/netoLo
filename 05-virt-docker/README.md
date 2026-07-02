@@ -35,3 +35,6 @@
 Будет запущен файл compose.yaml, в случае если в рабочей директории представлены файлы и compose.yaml и docker-compose.yaml без дополнительных указаний докер предпочтет запустить compose.yaml так устроен докер.
 #### t5.7
 Суть предупреждения в следующем, докер нашел контейнер не описанный в файлах копоуза, и предлагает выполнить команду с ключом --remove-orphans, что бы удалить его.
+
+#### Скриншоты
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png) на скриншот 1: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png
