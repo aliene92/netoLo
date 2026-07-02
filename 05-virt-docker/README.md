@@ -37,4 +37,7 @@
 Суть предупреждения в следующем, докер нашел контейнер не описанный в файлах копоуза, и предлагает выполнить команду с ключом --remove-orphans, что бы удалить его.
 
 #### Скриншоты
- - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png) на скриншот 1: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/01_MarkovAM-t5.png) на скриншот 1: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/01_MarkovAM-t5.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/02_MarkovAM-t5.png) на скриншот 2: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/02_MarkovAM-t5.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/03_MarkovAM-t5-portainer.png) на скриншот portainer: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/03_MarkovAM-t5-portainer.png
+- [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/MarkovAM-compose.yaml) на compose.yaml: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t5/MarkovAM-compose.yaml
