@@ -19,3 +19,8 @@
 #### Скриншоты
  - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png) на скриншот 1: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/01_MarkovAM-t3.png
  - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/02_MarkovAM-t3.png) на скриншот 2: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/02_MarkovAM-t3.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/03_MarkovAM-t3.png) на скриншот 3: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/03_MarkovAM-t3.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/04_nginxConfig-MarkovAM-t3.png) на скриншот 4: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/04_nginxConfig-MarkovAM-t3.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/05_MarkovAM-t3.png) на скриншот 5: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/05_MarkovAM-t3.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/config_v2.png) на скриншот 6: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/config_v2.png
+ - [Ссылка](https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/hostconfig.png) на скриншот 7: https://github.com/aliene92/netoLo/blob/01-ModulVirt-Docer-Compose/05-virt-docker/t3/hostconfig.png
