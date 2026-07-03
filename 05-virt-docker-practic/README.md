@@ -109,3 +109,46 @@ volumes:
 
 ## Задача 4
 ### Ответ:
+была создана ВМ в яндекс клауд, настроен доступ по SSH, установлен докер.
+скрипт 'builderApp.sh':
+```#!/usr/bin/env bash
+set -Eeuo pipefail
+
+REPO_URL="https://github.com/aliene92/shvirtd-example-python.git"
+APP_DIR="/opt/shvirtd-example-python"
+COMPOSE_FILE="${APP_DIR}/compose.yaml"
+
+mkdir -p /opt
+
+git clone "${REPO_URL}" "${APP_DIR}"
+
+cd "${APP_DIR}"
+
+docker compose -f "${COMPOSE_FILE}" down || true
+
+docker compose -f "${COMPOSE_FILE}" up -d --build
+
+docker compose -f "${COMPOSE_FILE}" ps
+```
+---
+ссылка на [fork](https://github.com/aliene92/shvirtd-example-python.git)
+
+---
+на скриншот ниже показан результат выполнения скрипта установки:
+![скрипт установки](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/runScriptResult.png)
+
+---
+на скриншоте ниже показаны результаты проверки доступности сервиса на порту 8090 изнутри, снаружи и через браузер:
+![acc8090](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/checkAddrs.png)
+
+---
+на скриншоте ниже показаны результаты проверки с сайта проверки http подключений:
+![servcheck](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/httpCheck.png)
+
+---
+на скриншоте ниже показаны результаты sql запроса к БД развернутой на ВМ в яндекс клауде:
+![yacloudvm](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/sqlFromYaHost.png)
+
+---
+## Задача 5
+### Ответ:
