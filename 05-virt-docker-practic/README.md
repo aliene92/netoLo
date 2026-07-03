@@ -100,3 +100,6 @@ volumes:
   mysql_data:
 ```
 ---
+
+Проект собирается командой и успешно выполняется. На скриншоте ниже виден вывод запроса к sql базе:
+![сборка и вывод select](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/MarkovAM-t0.png)
