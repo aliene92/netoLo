@@ -6,3 +6,4 @@
 
 ## Задача 1
 ### Ответ:
+[ссылка на мой реполиторий с форком](https://github.com/aliene92/shvirtd-example-python/tree/main) - https://github.com/aliene92/shvirtd-example-python/tree/main
