@@ -152,3 +152,5 @@ docker compose -f "${COMPOSE_FILE}" ps
 ---
 ## Задача 5
 ### Ответ:
+на скриншоте ниже показан процесс скачивания образа(ну почти, образ был сукачан заранее), и копирования бинарного файл /bin/terraform на свою локальную машину в процессе были использованы dive и docker save.
+![saveTerraform](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/terraformExtract.png)
