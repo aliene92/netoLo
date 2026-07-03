@@ -6,7 +6,9 @@
 
 ## Задача 1
 ### Ответ:
+
 [ссылка на мой реполиторий с форком](https://github.com/aliene92/shvirtd-example-python/tree/main) - https://github.com/aliene92/shvirtd-example-python/tree/main
+
 ---
 текст файла 'Docerfile.python':
 ```dockerfile
@@ -39,3 +41,8 @@ EXPOSE 5000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 ```
+---
+скриеншот гитхаба:
+![скриеншот гитхаба:](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/MarkovAM-github-screen.png)
+
+---
