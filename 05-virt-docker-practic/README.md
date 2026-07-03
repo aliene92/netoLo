@@ -139,7 +139,7 @@ docker compose -f "${COMPOSE_FILE}" ps
 
 ---
 на скриншоте ниже показаны результаты проверки доступности сервиса на порту 8090 изнутри, снаружи и через браузер:
-![acc8090](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/httpCheck.png)
+![acc8090](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/checkAddrs1.png)
 
 ---
 на скриншоте ниже показаны результаты проверки с сайта проверки http подключений:
