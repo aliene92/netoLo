@@ -43,7 +43,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 ```
 ---
 скриншот гитхаба:
-![скриеншот гитхаба:](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/MarkovAM-github-screen.png)
+![скриеншот гитхаба:](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/github-screen1.png)
 
 ---
 ## Задача 3
