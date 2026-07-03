@@ -102,5 +102,5 @@ volumes:
 ---
 
 Проект собирается командой и успешно выполняется. На скриншотах ниже виден процесс и вывод запроса к sql базе:
-![сборка](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/MarkovAM-t0.png)
-![вывод select](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/MarkovAM-t0.png)
+![сборка](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/composeStart.png)
+![вывод select](https://github.com/aliene92/netoLo/blob/main/05-virt-docker-practic/screenShots/sqlSelectResalt.png)
