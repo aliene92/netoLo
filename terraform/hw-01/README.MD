@@ -6,3 +6,20 @@
 ### Ответ 1.2
 На скриншоте ниже представлен текст файла .gitignore, из текста файла следует, что допустимо сохранить личную, секретную информацию в файле personal.auto.tfvars
 ![гитигноръх](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/gitignr.png)
+### Ответ 1.3
+На скриншоте ниже видно выполнение кода проекта
+![выполнение](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/runPrj.png)
+для успешного запуска проекта необходимо было изменить требование к версии Terraform, прописанное в файле main.tf.
+
+---
+было
+'''
+required_version = "~>1.12.0"
+'''
+
+---
+стало
+'''
+required_version = ">=1.12.0"
+'''
+---
