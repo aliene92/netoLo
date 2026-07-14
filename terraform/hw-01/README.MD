@@ -31,7 +31,8 @@ required_version = ">=1.12.0"
 По условиям синтаксиса терраформ ресурс должен содержать тип и имя resource "<TYPE>" "<LOCAL_NAME>" {
 было:
 ```было
-``` "resource "docker_image" 
+"resource "docker_image"
+```
 исправлено: 
 ```исправлено
 resource "docker_image" "nginx"
