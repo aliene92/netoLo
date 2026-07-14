@@ -37,3 +37,27 @@ required_version = ">=1.12.0"
 ```исправлено
 resource "docker_image" "nginx"
 ```
+#### Ошибка 2
+Имя ресурса не может начинаться с числа\
+было:
+```было
+resource "docker_container" "1nginx" {
+```
+исправлено: 
+```исправлено
+resource "docker_container" "nginx" {
+```
+#### Ошибка 3
+Неверно указано имя типа и неверно указано имя атрибута, буква в верхнем регистре.\
+было:
+```было
+name  = "example_${random_password.random_string_FAKE.resulT}"
+```
+исправлено: 
+```исправлено
+name  = "example_${random_password.random_string.result}"
+```
+Исправленный файл main.tf выложен по [ссылке](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/files/my_main.tf)
+
+
+
