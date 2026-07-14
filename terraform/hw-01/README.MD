@@ -4,7 +4,7 @@
 На скриншоте ниже видно, что установлены докер и терраформ, а так же клонирован репозиторий с проектом
 ![установлены докер и терраформ,клонировано](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/scr1.png)
 ### Ответ 1.2
-На скриншоте ниже представлен текст файла .gitignore, из текста файла следует, что допустимо сохранить личную, секретную информацию в файле personal.auto.tfvars
+На скриншоте ниже представлен текст файла .gitignore, из текста файла следует, что допустимо сохранить личную, секретную информацию в файле **personal.auto.tfvars**
 ![гитигноръх](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/gitignr.png)
 ### Ответ 1.3
 На скриншоте ниже видно выполнение кода проекта
@@ -21,5 +21,5 @@ required_version = ">=1.12.0"
 ```
 ---
 
-Анализ файла terraform.tfstate позволил определить, что секретный код имеет значение *vkG5GmmLBWm7xY1X* и находится по пути .resources[].instances[0].attributes.result. Скриншот ниже.
+Анализ файла terraform.tfstate позволил определить, что секретный код имеет значение **vkG5GmmLBWm7xY1X** и находится по пути .resources[].instances[0].attributes.result. Скриншот ниже.
 ![secret](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/secret.png)
