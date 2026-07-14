@@ -102,5 +102,7 @@ resource "docker_container" "nginx" {
 
 ```
 Ссылка на файл [main.tr](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/files/my_main.tf)
+Ниже скриншот вывода команды docker ps
+![dockerps](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/dockerps.png)
 ### Ответ 1.6
 
