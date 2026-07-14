@@ -28,7 +28,7 @@ required_version = ">=1.12.0"
 ![ошибки](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/errs.png)
 Намеренно допущенные ошибки следующие
 #### Ошибка 1
-По условиям синтаксиса терраформ ресурс должен содержать тип и имя resource "<TYPE>" "<LOCAL_NAME>" {
+По условиям синтаксиса терраформ ресурс должен содержать тип и имя resource "<TYPE>" "<LOCAL_NAME>" {\
 было:
 ```было
 "resource "docker_image"
