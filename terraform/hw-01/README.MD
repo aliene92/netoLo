@@ -24,3 +24,5 @@ required_version = ">=1.12.0"
 Анализ файла terraform.tfstate позволил определить, что секретный код имеет значение **vkG5GmmLBWm7xY1X** и находится по пути .resources[].instances[0].attributes.result. Скриншот ниже.
 ![secret](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/secret.png)
 ### Ответ 1.4
+На скриншоте ниже видны ошибки после раскоментирования всего кода в файле main.tf и попытки его выполнения
+![ошибки]()
