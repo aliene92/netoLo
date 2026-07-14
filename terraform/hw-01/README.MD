@@ -25,4 +25,14 @@ required_version = ">=1.12.0"
 ![secret](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/secret.png)
 ### Ответ 1.4
 На скриншоте ниже видны ошибки после раскоментирования всего кода в файле main.tf и попытки его выполнения
-![ошибки]()
+![ошибки](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/errs.png)
+Намеренно допущенные ошибки следующие
+#### Ошибка 1
+По условиям синтаксиса терраформ ресурс должен содержать тип и имя resource "<TYPE>" "<LOCAL_NAME>" {
+было:
+```было
+``` "resource "docker_image" 
+исправлено: 
+```исправлено
+resource "docker_image" "nginx"
+```
