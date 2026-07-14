@@ -20,7 +20,7 @@ resource "random_password" "random_string" {
 }
 
 
-resource "docker_image" "nginx"{
+resource "docker_image" "nginx" {
   name         = "nginx:latest"
   keep_locally = true
 }
