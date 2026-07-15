@@ -105,7 +105,7 @@ resource "docker_container" "nginx" {
 Ниже скриншот вывода команды docker ps
 ![dockerps](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/dockerps.png)
 ### Ответ 1.6
-На скриншоте ниже видно выолнение terraform apply -auto-approve и docker ps. Имя контейнера теперь Hello_world. Для переименования была изменена строчка в файле main.tf
+На скриншоте ниже видно выолнение terraform apply -auto-approve и docker ps. Имя контейнера теперь Hello_world. Для переименования была изменена строчка в файле main.tf\
 было
 ```было
 name  = "example_${random_password.random_string.result}"
