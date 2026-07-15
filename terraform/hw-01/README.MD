@@ -155,6 +155,7 @@ resource "docker_image" "nginx" {
   keep_locally = true
 }
 ```
+Строчка из документации terraform провайдера docker:
 
 
 
