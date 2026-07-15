@@ -146,7 +146,15 @@ name  = "Hello_world"
 
 ### Ответ 1.8
 
-Docker-образ **nginx:latest** не был удален по причине наличия ключа 
+Docker-образ **nginx:latest** не был удален по причине наличия ключа ```keep_locally = true``` в коде ресурса ```docker_image```. Ниже скриншот подтверждающий это.
+![dckrimgAndCode](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/dcImgAndscrMain.png)
+кусок кода:
+```
+resource "docker_image" "nginx" {
+  name         = "nginx:latest"
+  keep_locally = true
+}
+```
 
 
 
