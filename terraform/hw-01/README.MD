@@ -130,7 +130,19 @@ name  = "Hello_world"
 3) Ci/CD пайплайны
 4) автоматическое развертывание временной инфраструктуры
 ### Ответ 1.7
-На скриншоте ниже видно выполнение команты ```terraform destroy```. По ссылке выложен файл [terraform.tfstate](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/files/terraform.tfstate). 
+На скриншоте ниже видно выполнение команты ```terraform destroy``` и ```docker ps```. По ссылке выложен файл [terraform.tfstate](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/files/terraform.tfstate). 
+Текст файла terraform.tfstate:
+```{
+  "version": 4,
+  "terraform_version": "1.15.8",
+  "serial": 25,
+  "lineage": "0eae3b7b-413c-7165-5dee-955aaba3d344",
+  "outputs": {},
+  "resources": [],
+  "check_results": null
+}```
+### Ответ 1.8
+
 
 
 
