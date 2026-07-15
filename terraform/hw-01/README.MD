@@ -116,7 +116,9 @@ name  = "Hello_world"
 ```
 ![teranddocker](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/tfapplDckrPS.png)
 
+**Опастность выполнения команды ```terraform apply``` с ключем  ```-auto-approve```:**\
 
+1) 
 
 
 
