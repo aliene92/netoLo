@@ -159,7 +159,7 @@ resource "docker_image" "nginx" {
 ```
 keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
 ```
-+ скриншот с сайта
+Cкриншот с сайта
 ![keepLckl](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/keepLckl.png)
 
 
