@@ -131,8 +131,9 @@ name  = "Hello_world"
 4) автоматическое развертывание временной инфраструктуры
 ### Ответ 1.7
 На скриншоте ниже видно выполнение команты ```terraform destroy``` и ```docker ps```. По ссылке выложен файл [terraform.tfstate](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/files/terraform.tfstate). 
+![destAndPS](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/destrandps.png)
 Текст файла terraform.tfstate:
-```{
+``` {
   "version": 4,
   "terraform_version": "1.15.8",
   "serial": 25,
@@ -140,7 +141,8 @@ name  = "Hello_world"
   "outputs": {},
   "resources": [],
   "check_results": null
-}```
+} ```
+
 ### Ответ 1.8
 
 
