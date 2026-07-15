@@ -139,14 +139,14 @@ name  = "Hello_world"
   "serial": 25,
   "lineage": "0eae3b7b-413c-7165-5dee-955aaba3d344",
   "outputs": {},
-  "resources": [],
+  <span style="background-color: yellow;">"resources": []/span>,
   "check_results": null
 } 
 ```
 
 ### Ответ 1.8
 
-
+Docker-образ **nginx:latest** не был удален по причине наличия ключа 
 
 
 
