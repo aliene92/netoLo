@@ -141,7 +141,8 @@ name  = "Hello_world"
   "outputs": {},
   "resources": [],
   "check_results": null
-} ```
+} 
+```
 
 ### Ответ 1.8
 
