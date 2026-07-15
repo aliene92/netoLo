@@ -139,7 +139,7 @@ name  = "Hello_world"
   "serial": 25,
   "lineage": "0eae3b7b-413c-7165-5dee-955aaba3d344",
   "outputs": {},
-  <span style="background-color: yellow;">"resources": []/span>,
+  "resources": [],
   "check_results": null
 } 
 ```
