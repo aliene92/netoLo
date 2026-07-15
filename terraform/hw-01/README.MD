@@ -105,4 +105,5 @@ resource "docker_container" "nginx" {
 Ниже скриншот вывода команды docker ps
 ![dockerps](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/dockerps.png)
 ### Ответ 1.6
-
+На скриншоте ниже видно выолнение terraform apply -auto-approve и docker ps.
+![teranddocker](https://github.com/aliene92/netoLo/blob/main/terraform/hw-01/scr/tfapplDckrPS.png)
