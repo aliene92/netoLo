@@ -14,4 +14,4 @@
 Сгенерирована пара SSH ключей.\
 Была объявлена переменная для хранения пути к файлу с ключем с именем `vms_ssh_root_key` в файле `variables.tf`.\
 В файл `personal.auto.tfvars` добавлены значения для переменных `cloud_id`, `folder_id`, `vms_ssh_root_key`, `service_account_key_file`.\
-В файле `providers.tf` добавлено указание версии для провайдера от яндекса.\
+В файле `providers.tf` добавлено указание версии для провайдера от яндекса и поправлена переменная `service_account_key_file`.\
