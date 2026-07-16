@@ -9,7 +9,5 @@
 ![terVer](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/terraformVer.png)
 #### Задание 1.1
 ##### Ответ
-Изучив проект стало понятно, что он состоит из файлов:
-```text
-.gitignore  .terraformrc  console.tf  locals.tf  main.tf  outputs.tf  personal.auto.tfvars  providers.tf  variables.tf
-```
+Проект изучен.\
+В результате анализа были прописаны значения по умолчанию для переменных `provider.tf`
