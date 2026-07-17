@@ -143,4 +143,4 @@ variable "metadata" {
 #### Задание 6.4
 ##### Ответ
 На скриншоте ниже видно выполнение команды `terraform apply` и что никаких изменений не вносилось.
-![finalNoChange]()
+![finalNoChange](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/finalApply.png)
