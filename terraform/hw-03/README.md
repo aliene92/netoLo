@@ -147,4 +147,5 @@ ssh_public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
     ssh-keys = "${var.vm_user}:${local.ssh_public_key}"
   }
 ```
-переменная `vm_user` была прописана в файл `variables.tf`.
+переменная `vm_user` была прописана в файл `variables.tf`.\
+Блок metadata прописан в файл `personal.auto.tfvars`
