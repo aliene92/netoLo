@@ -139,3 +139,12 @@ depends_on = [
 ```
 ### Задание 2.4
 #### Ответ
+В задании однозначно задано имя ssh ключа, поэтому был сгенерирован новый ключ с именем `id_rsa`.В файл `locals.tf` был добавлен код, использующий функцию file. Код ниже
+```fileFunction
+ssh_public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
+
+    metadata = {
+    ssh-keys = "${var.vm_user}:${local.ssh_public_key}"
+  }
+```
+переменная `vm_user` была прописана в файл `variables.tf`.
