@@ -48,4 +48,4 @@
 #### Задание 3.2
 ##### Ответ
 Изменения были применены командой terraform apply.
-По ссылкам находятся файлы [main.tf](), [vms_platform.tf]() и [variables.tf](), **актуальные на момент выполнения задания №3**.
+По ссылкам находятся файлы [main.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/main.tf), [vms_platform.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/vms_platform.tf) и [variables.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/variables.tf), **актуальные на момент выполнения задания №3**.
