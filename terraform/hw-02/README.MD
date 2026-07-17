@@ -27,4 +27,4 @@
 ## Задание 2
 #### Задание 2.1
 ##### Ответ
-Все хардкодные значения ресурсов yandex_compute_image и yandex_compute_instance были заменены на переменные с именами vm_web_*. Ниже скриншот файла `variables.tf`
+Все хардкодные значения ресурсов yandex_compute_image и yandex_compute_instance были заменены на переменные с именами vm_web_*. Ниже скриншот файла `main.tf` после замены
