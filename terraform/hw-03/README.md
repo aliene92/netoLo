@@ -64,4 +64,68 @@ locals {
 ```
 ### Задание 2.2
 #### Ответ
-Был создан файл `for_each-vm.tf` в котором описывается создание двух ВМ с именами main и replica, для этих машин используются разные настройки по кол-ву ресурсов, а именно ядер, памяти, гарантированной доступности процессора(core fraction) и величине диска.
+Был создан файл `for_each-vm.tf` в котором описывается создание двух ВМ с именами main и replica, для этих машин используются разные настройки по кол-ву ресурсов, а именно ядер, памяти, гарантированной доступности процессора(core fraction) и величине диска. В файл `variable.tf` была добавлена переменная `each_vm`. Ниже текст файла `for_each-vm.tf`
+```for_each-vm.tf
+resource "yandex_compute_instance" "db" {
+  for_each = {
+    for vm in var.each_vm : vm.vm_name => vm
+  }
+
+  name        = each.value.vm_name
+  hostname    = each.value.vm_name
+  platform_id = var.db_vm_platform_id
+  zone        = var.vm_zone
+
+  resources {
+    cores         = each.value.cpu
+    memory        = each.value.ram
+    core_fraction = var.db_vm_core_fraction
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+      size     = each.value.disk_volume
+      type     = var.db_vm_disk_type
+    }
+  }
+
+  network_interface {
+    subnet_id          = data.yandex_vpc_subnet.develop.id
+    nat                = true
+    security_group_ids = [yandex_vpc_security_group.example.id]
+  }
+
+  metadata = local.metadata
+
+  scheduling_policy {
+    preemptible = true
+  }
+}
+```
+и текст созданной переменной `each_vm`
+```each_vm
+variable "each_vm" {
+  type = list(object({
+    vm_name     = string
+    cpu         = number
+    ram         = number
+    disk_volume = number
+  }))
+
+  default = [
+    {
+      vm_name     = "main"
+      cpu         = 2
+      ram         = 1
+      disk_volume = 5
+    },
+    {
+      vm_name     = "replica"
+      cpu         = 2
+      ram         = 2
+      disk_volume = 10
+    }
+  ]
+}
+```
