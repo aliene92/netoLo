@@ -135,4 +135,5 @@ variable "metadata" {
   type        = map(string)
   }
 ```
-Значение переменной прописанов в файл `personal.auto.tfvars`
+Значение переменной прописанов в файл `personal.auto.tfvars`.\
+В файле `main.tf` переменная `metadata` используется для обеих ВМ.
