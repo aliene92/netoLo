@@ -185,8 +185,7 @@ resource "yandex_compute_disk" "storage" {
 ```
 ### Задание 3.2
 #### Ответ
-В файл было прописано создание ВМ storage
-
+В том же файле было добавлено создание одиночной ВМ storage. Использовался блок dynamic secondary_disk{..} и мета-аргумент for_each для подключения созданных мною дополнительных дисков. Текст ресурса ниже
 ```storage
 resource "yandex_compute_instance" "storage" {
   name        = var.storage_vm_name
