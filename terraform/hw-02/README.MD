@@ -37,3 +37,4 @@
 #### Задание 2.2
 ##### Ответ
 Ниже скриншот выполнение команды `terraform plan`. Изменений не произошло.
+![trPlan](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/trPln.png)
