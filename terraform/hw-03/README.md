@@ -29,7 +29,7 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu.image_id
+      image_id = yandex_compute_image.ubuntu.image_id
       size     = var.vm_web_resources.disk_volume
       type     = var.vm_web_resources.disk_type
     }
@@ -84,7 +84,7 @@ resource "yandex_compute_instance" "db" {
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu.image_id
+      image_id = yandex_compute_image.ubuntu.image_id
       size     = each.value.disk_volume
       type     = var.db_vm_disk_type
     }
