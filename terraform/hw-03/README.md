@@ -73,26 +73,26 @@ resource "yandex_compute_instance" "db" {
 
   name        = each.value.vm_name
   hostname    = each.value.vm_name
-  platform_id = var.db_vm_platform_id
-  zone        = var.vm_zone
+  platform_id = var.vm_platform_id
+  zone        = var.default_zone
 
   resources {
     cores         = each.value.cpu
     memory        = each.value.ram
-    core_fraction = var.db_vm_core_fraction
+    core_fraction = each.value.core_fraction
   }
 
   boot_disk {
     initialize_params {
-      image_id = yandex_compute_image.ubuntu.image_id
+      image_id = data.yandex_compute_image.ubuntu.image_id
       size     = each.value.disk_volume
-      type     = var.db_vm_disk_type
+      type     = each.value.disk_type
     }
   }
 
   network_interface {
     subnet_id          = yandex_vpc_subnet.develop.id
-    nat                = true
+    nat                = false
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 
@@ -107,24 +107,30 @@ resource "yandex_compute_instance" "db" {
 ```each_vm
 variable "each_vm" {
   type = list(object({
-    vm_name     = string
-    cpu         = number
-    ram         = number
-    disk_volume = number
+    vm_name       = string
+    cpu           = number
+    ram           = number
+    core_fraction = number
+    disk_volume   = number
+    disk_type     = string
   }))
 
   default = [
     {
-      vm_name     = "main"
-      cpu         = 2
-      ram         = 1
-      disk_volume = 5
+      vm_name       = "main"
+      cpu           = 2
+      ram           = 1
+      disk_volume   = 5
+      core_fraction = 5
+      disk_type     = "network-hdd"
     },
     {
-      vm_name     = "replica"
-      cpu         = 2
-      ram         = 2
-      disk_volume = 10
+      vm_name       = "replica"
+      cpu           = 2
+      ram           = 2
+      disk_volume   = 10
+      core_fraction = 20
+      disk_type     = "network-hdd"
     }
   ]
 }
@@ -150,4 +156,9 @@ ssh_public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
 переменная `vm_user` была прописана в файл `variables.tf`.\
 Блок metadata прописан в файл `personal.auto.tfvars`
 ### Задание 2.5
+#### Ответ
+Были выполнены команды `terraform fmt`, `terraform plan` и `terraform apply`. После выполнения apply были созданы 4 ВМ по заданным параметрам. Ниже скриншот. Nat пришлось выставить false, так как в яндекс клауде достигнут лимит на создание новых публичных ИП адресов.
+![vminya](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/task2.png)
+## Задание 3
+### Задание 3.1
 #### Ответ
