@@ -137,3 +137,5 @@ depends_on = [
     yandex_compute_instance.db
   ]
 ```
+### Задание 2.4
+#### Ответ
