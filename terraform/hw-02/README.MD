@@ -89,4 +89,40 @@ output "vms_net_info" {
 ## Задание 6
 #### Задание 6.1
 ##### Ответ
+Вместо отдельных переменных описывающих характеристики ВМ была создана map переменная `vms_resources` с текстом
+```vms_resources
+variable "vms_resources" {
+  type = map(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+    hdd_size      = number
+    hdd_type      = string
+    nat           = bool
+    preemptible   = bool
+  }))
 
+  default = {
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 5
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+      nat           = false
+      preemptible   = true
+    }
+
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+      nat           = false
+      preemptible   = true
+    }
+  }
+}
+
+```
