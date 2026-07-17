@@ -11,7 +11,7 @@
 ## Задание 2
 ### Задание 2.1
 #### Ответ
-Созданы файлы `count-vm.tf` и `locals.tf`. В файле `count-vm.tf` описан цикл создания виртуальных машин в заданном кол-ве. В файле `locals.tf` добавлена конструкция `index + 1` для получения имен web-1 и web-2, а не web-0 и web-1. Ниже приведены тексты файлов `count-vm.tf` и `locals.tf`
+Созданы файлы `count-vm.tf` и `locals.tf`. В файле `count-vm.tf` описан цикл создания виртуальных машин в заданном кол-ве. В файле `locals.tf` добавлена конструкция `index + 1` для получения имен web-1 и web-2, а не web-0 и web-1. Ниже приведены тексты файлов `count-vm.tf`
 ```count-vm.tf
 resource "yandex_compute_instance" "web" {
   count = var.web_vm_count
@@ -52,7 +52,7 @@ resource "yandex_compute_instance" "web" {
   ]
 }
 ```
-
+ и `locals.tf`
 ```locals.tf
 locals {
 
