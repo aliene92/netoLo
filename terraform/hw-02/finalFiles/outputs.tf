@@ -1,4 +1,4 @@
-    output "vms_net_info" {
+output "vms_net_info" {
   value = {
 
     web = {
