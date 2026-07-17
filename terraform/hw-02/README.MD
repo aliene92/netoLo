@@ -70,3 +70,10 @@ output "vms_net_info" {
   }
 }
 ```
+#### Задание 4.2
+##### Ответ
+Изменения применены. Ниже скриншот вывода `terraform output`
+![output](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/output.png)
+## Задание 5
+#### Задание 5.1
+##### Ответ
