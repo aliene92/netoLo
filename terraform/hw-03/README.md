@@ -11,3 +11,11 @@
 ## Задание 2
 ### Задание 2.1
 #### Ответ
+Для выполнения условия задания был создан файл `locals.tf` c текстом 
+```text
+web_vm_names = [
+    for index in range(var.web_vm_count) : "${var.web_vm_name_prefix}-${index + 1}"
+  ]
+}
+
+```
