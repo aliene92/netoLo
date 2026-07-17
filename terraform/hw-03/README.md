@@ -7,4 +7,4 @@
 #### Ответ
 Перед инициализацией проекта в файл `personal.auto.tfvars` были добавлены значения для переменных `cloud_id`, `folder_id`, `token`. Токен с прошлого раза устарел, поэтому пришлось выпустить новый, командой `yc iam create-token`.\
 Ниже приложен скриншот входящих правил «Группы безопасности» в ЛК Yandex Cloud.
-![]()
+![secYc](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/secureYC.png)
