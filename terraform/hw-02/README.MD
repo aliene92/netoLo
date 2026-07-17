@@ -45,7 +45,28 @@
 #### Задание 3.2
 ##### Ответ
 В файле были объявлены новые переменные для ВМ с именем netology-develop-platform-db. Значения по умолчанию установлены согласно заданию.
-#### Задание 3.2
+#### Задание 3.3
 ##### Ответ
 Изменения были применены командой terraform apply.
 По ссылкам находятся файлы [main.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/main.tf), [vms_platform.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/vms_platform.tf) и [variables.tf](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/files/variables.tf), **актуальные на момент выполнения задания №3**.
+## Задание 4
+#### Задание 4.1
+##### Ответ
+В файле `outputs.tf` объявлен один output, содержащий: instance_name, external_ip, fqdn для каждой из ВМ. Ниже текст outputа.
+```output
+output "vms_net_info" {
+  value = {
+
+    web = {
+      instance_name = yandex_compute_instance.platform.name
+      external_ip   = yandex_compute_instance.platform.network_interface[0].nat_ip_address
+      fqdn          = yandex_compute_instance.platform.fqdn
+    }
+    db = {
+      instance_name = yandex_compute_instance.platform-db.name
+      external_ip   = yandex_compute_instance.platform-db.network_interface[0].nat_ip_address
+      fqdn          = yandex_compute_instance.platform-db.fqdn
+    }
+  }
+}
+```
