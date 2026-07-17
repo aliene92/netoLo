@@ -36,7 +36,7 @@ resource "yandex_compute_instance" "web" {
   }
 
   network_interface {
-    subnet_id          = data.yandex_vpc_subnet.develop.id
+    subnet_id          = yandex_vpc_subnet.develop.id
     nat                = true
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
@@ -91,7 +91,7 @@ resource "yandex_compute_instance" "db" {
   }
 
   network_interface {
-    subnet_id          = data.yandex_vpc_subnet.develop.id
+    subnet_id          = yandex_vpc_subnet.develop.id
     nat                = true
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
