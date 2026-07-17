@@ -129,3 +129,11 @@ variable "each_vm" {
   ]
 }
 ```
+### Задание 2.3
+#### Ответ
+Для того, что бы ВМ, описанные в файле count-vm.tf, создавались после ВМ, описанных в файле for_each-vm.tf в файл добавлена конструкция depends_on.
+```depends_on
+depends_on = [
+    yandex_compute_instance.db
+  ]
+```
