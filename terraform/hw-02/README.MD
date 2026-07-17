@@ -83,3 +83,10 @@ output "vms_net_info" {
 ##### Ответ
 Были заменены переменные внутри ресурсов ВМ в файле `main.tf`. Скриншот ниже
 ![localsVarsInRess](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/lcVarInRes.png)
+#### Задание 5.3
+##### Ответ
+Изменения успешно применены. 
+## Задание 6
+#### Задание 6.1
+##### Ответ
+
