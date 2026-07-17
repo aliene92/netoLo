@@ -126,7 +126,7 @@ variable "each_vm" {
     },
     {
       vm_name       = "replica"
-      cpu           = 2
+      cpu           = 4
       ram           = 2
       disk_volume   = 10
       core_fraction = 20
