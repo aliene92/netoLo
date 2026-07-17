@@ -79,3 +79,7 @@ output "vms_net_info" {
 ##### Ответ
 В файле `locals.tf` были объявлены локальные переменные `vm_web_local_name` и `vm_db_local_name`. Для сохранения имен ВМ в изначальном виде и выполнения условия задания были объявлены переменные `vm_web_name_pref`, `vm_web_name_suf`, `vm_db_name_pref` и `vm_db_name_suf`. Для новых переменных прописан тип и значение по умолчанию. Текс файла `locals.tf` на скриншоте ниже
 ![localsVars](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/localVars.png)
+#### Задание 5.2
+##### Ответ
+Были заменены переменные внутри ресурсов ВМ в файле `main.tf`. Скриншот ниже
+![localsVarsInRess](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/lcVarInRes.png)
