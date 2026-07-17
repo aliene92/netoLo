@@ -165,6 +165,7 @@ Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 ![vminya](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/ycc3ip.png)
 
 **Объяснение 3х внешних ИП адресов, а не 4х**\
+Сначала создавались ВМ с параметром NAT=false, после успешного создания всех ресурсов, переменная была изменена на true, и выполнен еще один terraform apply.\
 Я слишком часто и много делал terraform apply и terraform destroy, попутно создавая и удаляя публичные ип адреса. Я был очень усерден и достиг предела.\
 Как я выяснил у поддержки яндекса, в YC есть лимит под названием vpc.externalAddressesCreation.rate, по [ссылке](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/3ip.png) скрин ошибки в консоле. Этот лимит никак не отображается в ЛК в лимитах. Дополнительно коллеги из поддержки пояснили, что со своей стороны так же не видят этот лимит, не могу посмотреть его значения и не знаю какой у него таймаут. Прикладываю [ссылку](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/spansw.png) на скриншот ответа саппорта яндекса.
 ## Задание 3
