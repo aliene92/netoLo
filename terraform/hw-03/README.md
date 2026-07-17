@@ -149,3 +149,5 @@ ssh_public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
 ```
 переменная `vm_user` была прописана в файл `variables.tf`.\
 Блок metadata прописан в файл `personal.auto.tfvars`
+### Задание 2.5
+#### Ответ
