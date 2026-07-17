@@ -229,3 +229,8 @@ resource "yandex_compute_instance" "storage" {
   }
 }
 ```
+Так же прикладываю скриншот консоли яндекса на котором видна вкладка с дисками из ВМ storage.
+![ycstr](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/storWthDsks.png)
+## Задание 4
+### Задание 4.1
+#### Ответ
