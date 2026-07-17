@@ -31,4 +31,5 @@
 ![vars_in_main](https://github.com/aliene92/netoLo/blob/main/terraform/hw-02/scr/mainWithOutHC.png)
 #### Задание 2.2
 ##### Ответ
-В файле `variables.tf` объявлены новые переменные, прописан их тип и значение по умолчанию. Ниже скриншот файла `variables.tf` с новыми переменными.
+В файле `variables.tf` объявлены новые переменные, прописан их тип и значение по умолчанию. Ниже скриншот файла `variables.tf` с новыми переменными. значение части переменных вынесены в файл `personal.auto.tfvars`
+![new_vars_in_variable]()
