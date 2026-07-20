@@ -280,3 +280,20 @@ resource "local_file" "ansible_inventory" {
   })
 }
 ```
+Был создан файл шаблона
+```template
+[webservers]
+%{ for vm in webservers ~}
+${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
+%{ endfor ~}
+
+[databases]
+%{ for vm in databases ~}
+${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
+%{ endfor ~}
+
+[storage]
+%{ for vm in storage ~}
+${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
+%{ endfor ~}
+```
