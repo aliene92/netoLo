@@ -235,3 +235,10 @@ resource "yandex_compute_instance" "storage" {
 ## Задание 4
 ### Задание 4.1
 #### Ответ
+Для выполнения задания в провадеры был добавлен
+```provider
+local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
+    }
+```
