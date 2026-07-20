@@ -297,3 +297,7 @@ ${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
 ${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
 %{ endfor ~}
 ```
+Ниже скриншот выполнения `terraform apply`
+![terrapl](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/applans.png)
+По результатам выполнения был создан файл `inventory.ini`
+![inve](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/inv.png)
