@@ -301,3 +301,4 @@ ${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
 ![terrapl](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/applans.png)
 По результатам выполнения был создан файл `inventory.ini`
 ![inve](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/inv.png)
+**ССылка на отдельный бранч [terraform-03](https://github.com/aliene92/netoLo/tree/terraform-03)**
