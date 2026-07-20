@@ -233,7 +233,6 @@ resource "yandex_compute_instance" "storage" {
 ![ycstr](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/storWthDsks.png)
 ![5vm](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/5vms.png)
 ## Задание 4
-### Задание 4.1
 #### Ответ
 Для выполнения задания в провадеры был добавлен:
 ```provider
@@ -301,4 +300,6 @@ ${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
 ![terrapl](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/applans.png)
 По результатам выполнения был создан файл `inventory.ini`
 ![inve](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/inv.png)
-**ССылка на отдельный бранч [terraform-03](https://github.com/aliene92/netoLo/tree/terraform-03)**
+### **ССылка на отдельный бранч [terraform-03](https://github.com/aliene92/netoLo/tree/terraform-03)**
+Ниже скриншот после выполнения выполнения `terraform destroy`
+![terdestr](https://github.com/aliene92/netoLo/blob/main/terraform/hw-03/scr/destrfr.png)
