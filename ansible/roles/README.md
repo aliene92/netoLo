@@ -16,3 +16,21 @@
 ## Проверка ansible
 На скриншоте ниже видно, что целевая машина доступна по ssh. Команды выполняются от root'a.
 ![scr1](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/avalroot.png)
+
+## Структура основного репозитория
+
+Репозиторий с playbook содержит playbook, inventory, переменные и файл зависимостей roles:
+
+```text
+08-ansible-04-role/
+├── group_vars
+│   └── all.yml
+├── inventory
+│   └── prod.yml
+├── README.md
+├── requirements.yml
+└── site.yml
+```
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/tree.png)
+
+
