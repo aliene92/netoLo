@@ -109,3 +109,67 @@ roles
 ├── lighthouse-role
 └── vector-role
 ```
+
+## Основной playbook
+
+Файл `site.yml`:
+
+```yaml
+---
+- name: Install ClickHouse, Vector and LightHouse
+  hosts: all
+  become: true
+
+  roles:
+    - role: clickhouse
+    - role: vector-role
+    - role: lighthouse-role
+```
+
+## Роль vector-role
+
+Роль `vector-role` выполняет:
+
+- установку зависимостей;
+- скачивание deb-пакета Vector;
+- установку Vector;
+- создание каталога конфигурации;
+- генерацию файла `/etc/vector/vector.yaml` из шаблона;
+- запуск и включение сервиса Vector.
+
+Основные переменные роли:
+
+| Переменная | Значение по умолчанию | Описание |
+|---|---|---|
+| `vector_version` | `0.38.0` | Версия Vector |
+| `vector_arch` | `amd64` | Архитектура пакета |
+| `vector_config_dir` | `/etc/vector` | Каталог конфигурации |
+| `vector_config_file` | `/etc/vector/vector.yaml` | Основной конфигурационный файл |
+| `vector_service_name` | `vector` | Имя systemd-сервиса |
+| `vector_clickhouse_endpoint` | `http://localhost:8123` | HTTP endpoint ClickHouse |
+| `vector_clickhouse_database` | `logs` | База данных ClickHouse |
+| `vector_clickhouse_table` | `vector_logs` | Таблица ClickHouse |
+
+## Роль lighthouse-role
+
+Роль `lighthouse-role` выполняет:
+
+- установку зависимостей;
+- установку nginx;
+- клонирование репозитория LightHouse;
+- генерацию nginx-конфигурации из шаблона;
+- включение сайта LightHouse;
+- отключение стандартного сайта nginx;
+- запуск и включение сервиса nginx.
+
+Основные переменные роли:
+
+| Переменная | Значение по умолчанию | Описание |
+|---|---|---|
+| `lighthouse_repo` | `https://github.com/VKCOM/lighthouse.git` | Репозиторий LightHouse |
+| `lighthouse_version` | `master` | Ветка или тег LightHouse |
+| `lighthouse_dest` | `/var/www/lighthouse` | Каталог установки LightHouse |
+| `lighthouse_nginx_conf` | `/etc/nginx/sites-available/lighthouse.conf` | Путь к nginx-конфигурации |
+| `lighthouse_nginx_enabled_conf` | `/etc/nginx/sites-enabled/lighthouse.conf` | Путь к активной nginx-конфигурации |
+| `lighthouse_listen_port` | `80` | Порт nginx |
+| `lighthouse_server_name` | `_` | Имя сервера nginx |
