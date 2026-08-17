@@ -5,6 +5,6 @@
 
 | Назначение | Репозиторий |
 |---|---|
-| Vector role | <https://github.com/victoryurochkin/vector-role> |
-| LightHouse role | <https://github.com/victoryurochkin/lighthouse-role> |
-| Основной playbook | <https://github.com/victoryurochkin/08-ansible-04-role> |
+| Vector role | <https://github.com/aliene92/vector-role> |
+| LightHouse role | <https://github.com/aliene92/lighthouse-role> |
+| Основной playbook | <https://github.com/aliene92/08-ansible-04-role-mrk> |
