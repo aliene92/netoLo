@@ -89,3 +89,23 @@ lighthouse_server_name: "_"
 ```
 
 Роли Vector и LightHouse опубликованы в отдельных публичных репозиториях
+
+## Установка roles
+
+Роли устанавливаются командой:
+
+```bash
+ansible-galaxy install -r requirements.yml -p roles
+```
+
+Результат установки:
+![scr3](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/instrol.png)
+
+После установки роли располагаются в каталоге `roles/`:
+
+```text
+roles
+├── clickhouse
+├── lighthouse-role
+└── vector-role
+```
