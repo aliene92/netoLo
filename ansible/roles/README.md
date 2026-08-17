@@ -173,3 +173,78 @@ roles
 | `lighthouse_nginx_enabled_conf` | `/etc/nginx/sites-enabled/lighthouse.conf` | Путь к активной nginx-конфигурации |
 | `lighthouse_listen_port` | `80` | Порт nginx |
 | `lighthouse_server_name` | `_` | Имя сервера nginx |
+
+## Запуск playbook
+
+Playbook запускается командой:
+
+```bash
+ansible-playbook -i inventory/prod.yml site.yml
+```
+
+Результат выполнения:
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/tree.png)
+
+## Проверка сервисов
+
+После выполнения playbook были проверены сервисы ClickHouse, Vector и nginx.
+
+```bash
+ansible -i inventory/prod.yml all -m command -a "systemctl is-active clickhouse-server" -b
+ansible -i inventory/prod.yml all -m command -a "systemctl is-active vector" -b
+ansible -i inventory/prod.yml all -m command -a "systemctl is-active nginx" -b
+```
+
+Результат:
+
+```text
+target-server | CHANGED | rc=0 >>
+active
+
+target-server | CHANGED | rc=0 >>
+active
+
+target-server | CHANGED | rc=0 >>
+active
+```
+
+## Проверка портов
+
+Была выполнена проверка открытых портов:
+
+```bash
+ansible -i inventory/prod.yml all -m shell -a "ss -tulpn | grep -E '8123|9000|80'" -b
+```
+
+Результат:
+
+```text
+tcp   LISTEN 0      4096            127.0.0.1:9000      0.0.0.0:*    users:(("clickhouse-serv",pid=19057,fd=160))
+tcp   LISTEN 0      511               0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=21263,fd=6),("nginx",pid=21262,fd=6),("nginx",pid=21261,fd=6),("nginx",pid=21260,fd=6),("nginx",pid=20955,fd=6))
+tcp   LISTEN 0      4096            127.0.0.1:8123      0.0.0.0:*    users:(("clickhouse-serv",pid=19057,fd=159))
+tcp   LISTEN 0      4096                [::1]:8123         [::]:*    users:(("clickhouse-serv",pid=19057,fd=71))
+tcp   LISTEN 0      4096                [::1]:9000         [::]:*    users:(("clickhouse-serv",pid=19057,fd=73))
+```
+
+## Проверка ClickHouse
+
+Проверка доступности ClickHouse:
+
+```bash
+ansible -i inventory/prod.yml all -m command -a "clickhouse-client -q 'SHOW DATABASES'" -b
+```
+
+Результат:
+
+```text
+target-server | CHANGED | rc=0 >>
+INFORMATION_SCHEMA
+default
+information_schema
+system
+```
+
+## Проверка LightHouse
+
+Проверка доступности LightHouse через nginx:
+
