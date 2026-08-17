@@ -15,4 +15,4 @@
 
 ## Проверка ansible
 на скриншоте ниже видно, что целевая машина доступна по ssh. Команды выполняются от root'a.
-![scr1](http://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/avalroot.png)
+![scr1](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/avalroot.png)
