@@ -183,7 +183,7 @@ ansible-playbook -i inventory/prod.yml site.yml
 ```
 
 Результат выполнения:
-![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/tree.png)
+![scr4](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/resa.png)
 
 ## Проверка сервисов
 
@@ -248,3 +248,14 @@ system
 
 Проверка доступности LightHouse через nginx:
 
+
+
+
+
+
+
+## Ссылки для проверки
+
+- Vector role: <https://github.com/aliene92/vector-role>
+- LightHouse role: <https://github.com/aliene92/lighthouse-role>
+- Основной playbook: <https://github.com/aliene92/08-ansible-04-role-mrk>
