@@ -34,4 +34,60 @@
 ![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/tree.png)\
 Каталог `roles/` не хранится в основном репозитории и добавлен в `.gitignore`, так как роли устанавливаются через `ansible-galaxy` из `requirements.yml`.
 
+## Файл inventory
 
+Файл `inventory/prod.yml`:
+
+```yaml
+---
+all:
+  hosts:
+    target-server:
+      ansible_host: 192.168.1.84
+      ansible_user: it
+      ansible_become: true
+```
+
+## Файл переменных
+
+Файл `group_vars/all.yml`:
+
+```yaml
+---
+clickhouse_version: "22.3.3.44"
+clickhouse_packages:
+  - clickhouse-client
+  - clickhouse-server
+  - clickhouse-common-static
+
+vector_clickhouse_endpoint: "http://localhost:8123"
+vector_clickhouse_database: "logs"
+vector_clickhouse_table: "vector_logs"
+
+lighthouse_listen_port: 80
+lighthouse_server_name: "_"
+```
+
+## Файл requirements.yml
+
+В файл `requirements.yml` добавлены роли ClickHouse, Vector и LightHouse.
+
+```yaml
+---
+- src: https://github.com/AlexeySetevoi/ansible-clickhouse.git
+  scm: git
+  version: "1.13"
+  name: clickhouse
+
+- src: https://github.com/victoryurochkin/vector-role.git
+  scm: git
+  version: "1.0.0"
+  name: vector-role
+
+- src: https://github.com/victoryurochkin/lighthouse-role.git
+  scm: git
+  version: "1.0.0"
+  name: lighthouse-role
+```
+
+Роли Vector и LightHouse опубликованы в отдельных публичных репозиториях
