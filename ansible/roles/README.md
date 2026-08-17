@@ -32,5 +32,6 @@
 └── site.yml
 ```
 ![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/tree.png)
+Каталог `roles/` не хранится в основном репозитории и добавлен в `.gitignore`, так как роли устанавливаются через `ansible-galaxy` из `requirements.yml`.
 
 
