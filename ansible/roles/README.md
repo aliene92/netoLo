@@ -81,12 +81,10 @@ lighthouse_server_name: "_"
 
 - src: https://github.com/victoryurochkin/vector-role.git
   scm: git
-  version: "1.0.0"
   name: vector-role
 
 - src: https://github.com/victoryurochkin/lighthouse-role.git
   scm: git
-  version: "1.0.0"
   name: lighthouse-role
 ```
 
