@@ -196,17 +196,7 @@ ansible -i inventory/prod.yml all -m command -a "systemctl is-active nginx" -b
 ```
 
 Результат:
-
-```text
-target-server | CHANGED | rc=0 >>
-active
-
-target-server | CHANGED | rc=0 >>
-active
-
-target-server | CHANGED | rc=0 >>
-active
-```
+![scr5](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/active.png)
 
 ## Проверка портов
 
@@ -218,13 +208,7 @@ ansible -i inventory/prod.yml all -m shell -a "ss -tulpn | grep -E '8123|9000|80
 
 Результат:
 
-```text
-tcp   LISTEN 0      4096            127.0.0.1:9000      0.0.0.0:*    users:(("clickhouse-serv",pid=19057,fd=160))
-tcp   LISTEN 0      511               0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=21263,fd=6),("nginx",pid=21262,fd=6),("nginx",pid=21261,fd=6),("nginx",pid=21260,fd=6),("nginx",pid=20955,fd=6))
-tcp   LISTEN 0      4096            127.0.0.1:8123      0.0.0.0:*    users:(("clickhouse-serv",pid=19057,fd=159))
-tcp   LISTEN 0      4096                [::1]:8123         [::]:*    users:(("clickhouse-serv",pid=19057,fd=71))
-tcp   LISTEN 0      4096                [::1]:9000         [::]:*    users:(("clickhouse-serv",pid=19057,fd=73))
-```
+![scr6](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/port.png)
 
 ## Проверка ClickHouse
 
@@ -236,20 +220,18 @@ ansible -i inventory/prod.yml all -m command -a "clickhouse-client -q 'SHOW DATA
 
 Результат:
 
-```text
-target-server | CHANGED | rc=0 >>
-INFORMATION_SCHEMA
-default
-information_schema
-system
-```
+![scr7](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/datab.png)
 
 ## Проверка LightHouse
 
 Проверка доступности LightHouse через nginx:
 
+```bash
+curl -I http://158.160.165.54/
+```
 
-
+Результат:
+![scr8](https://github.com/aliene92/netoLo/blob/main/ansible/roles/scrs/pweb.png)
 
 
 
