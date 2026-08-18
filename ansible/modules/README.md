@@ -371,3 +371,62 @@ ls -lh *.tar.gz
 -rw-rw-r-- 1 mrk mrk 5.2K Aug 19 01:32 my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
 ```
 ![scr6](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/tar.png)
+
+## Проверка установки collection из локального архива
+
+Для проверки установки collection из локального архива была создана отдельная директория:
+
+```text
+install_test
+```
+
+В неё были помещены:
+
+```text
+install_test/
+├── my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+└── test_installed_collection.yml
+```
+
+---
+
+## Playbook для проверки установленной collection
+
+Файл:
+
+```text
+install_test/test_installed_collection.yml
+```
+
+Содержимое:
+
+```yaml
+---
+- name: Test installed custom collection
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - role: my_own_namespace.yandex_cloud_elk.create_file
+      vars:
+        my_own_module_path: /tmp/my_own_module_installed_collection_test.txt
+        my_own_module_content: "Hello from installed custom collection"
+```
+
+---
+
+## Установка collection из архива
+
+Команда установки:
+
+```bash
+ansible-galaxy collection install my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz --force
+```
+## Запуск playbook с установленной collection
+
+Первый запуск:
+
+```bash
+ansible-playbook test_installed_collection.yml
+```
+![scr7](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/rescol.png)
