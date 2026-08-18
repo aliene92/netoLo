@@ -34,7 +34,7 @@ ansible-galaxy collection init my_own_namespace.yandex_cloud_elk
 После этого collection была размещена в стандартной структуре Ansible collections:
 
 ```text
-ansible_collections/my_own_namespace/yandex_cloud_elk
+ansible/my_own_namespace/yandex_cloud_elk
 ```
 
 Итоговый путь collection:
@@ -49,7 +49,7 @@ ansible_collections/my_own_namespace/yandex_cloud_elk
 Модуль был создан в каталоге:
 
 ```text
-ansible_collections/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_module.py
+ansible/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_module.py
 ```
 
 Модуль принимает два обязательных параметра:
@@ -75,7 +75,7 @@ ansible_collections/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_mod
 Файл:
 
 ```text
-ansible_collections/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_module.py
+ansible/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_module.py
 ```
 
 Основная логика модуля:
@@ -170,3 +170,15 @@ if __name__ == '__main__':
 ```
 
 ---
+
+## Локальная проверка module
+
+Проверка выполнялась прямым запуском Python-файла модуля.
+
+Команда:
+
+```bash
+python3 plugins/modules/my_own_module.py <<'EOF'
+{"ANSIBLE_MODULE_ARGS": {"path": "/tmp/my_own_module_local_test.txt", "content": "Hello from local module test"}}
+EOF
+```
