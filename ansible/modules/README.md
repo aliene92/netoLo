@@ -21,3 +21,4 @@ Python 3.14.4
 pip 25.1.1
 git 2.53.0
 ```
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/vers.png)
