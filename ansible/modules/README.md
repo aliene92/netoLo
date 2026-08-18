@@ -431,3 +431,16 @@ ansible-playbook test_installed_collection.yml
 ```
 На скриншоте ниже видно успешную установку и запуск. при первом запуске создается файл, при повторном изменений не происходит.
 ![scr7](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/rescol.png)
+
+## Фиксация результата в Git
+
+После выполнения всех этапов изменения были добавлены в Git:
+
+```bash
+git add .
+git commit -m "Add custom ansible module collection"
+git tag 1.0.0
+
+git push origin main
+git push origin 1.0.0
+```
