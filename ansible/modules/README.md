@@ -444,3 +444,12 @@ git tag 1.0.0
 git push origin main
 git push origin 1.0.0
 ```
+## Ссылки для проверки
+
+| Назначение | Ссылка |
+|---|---|
+| Репозиторий | <https://github.com/aliene92/my_own_collection> |
+| Архив collection | <https://github.com/aliene92/my_own_collection/blob/main/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz> |
+| Git tag 1.0.0 | <https://github.com/aliene92/my_own_collection/releases/tag/1.0.0> |
+| Custom module | <https://github.com/aliene92/my_own_collection/blob/main/yandex_cloud_elk/plugins/modules/my_own_module.py> |
+| Role create_file | <https://github.com/aliene92/my_own_collection/tree/main/yandex_cloud_elk/roles/create_file> |
