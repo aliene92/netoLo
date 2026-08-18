@@ -306,3 +306,76 @@ ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansi
 ![scr5](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resrol.png)
 
 ---
+## Документация collection
+
+В collection заполнены основные файлы документации и метаданных:
+
+```text
+ansible/my_own_namespace/yandex_cloud_elk/README.md
+ansible/my_own_namespace/yandex_cloud_elk/galaxy.yml
+```
+
+Файл `galaxy.yml`:
+```
+---
+namespace: my_own_namespace
+name: yandex_cloud_elk
+version: 1.0.0
+readme: README.md
+authors:
+  - Alexey Markov
+description: Custom Ansible collection with module and role for creating text files.
+license:
+  - MIT
+tags:
+  - ansible
+  - module
+  - collection
+  - file
+  - homework
+dependencies: {}
+repository: https://github.com/aliene92/my_own_collection
+documentation: https://github.com/aliene92/my_own_collection
+homepage: https://github.com/aliene92/my_own_collection
+issues: https://github.com/aliene92/my_own_collection
+build_ignore:
+  - "*.tar.gz"
+  - ".git"
+  - ".gitignore"
+```
+---
+## Сборка collection
+
+Сборка collection выполнялась из корня collection:
+
+```bash
+cd /root/08-ansible-06-module/ansible_collections/my_own_namespace/yandex_cloud_elk
+
+ansible-galaxy collection build --force
+```
+
+Результат:
+
+```text
+Created collection for my_own_namespace.yandex_cloud_elk at /root/08-ansible-06-module/ansible_collections/my_own_namespace/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+```
+
+Проверка архива:
+
+```bash
+ls -lh *.tar.gz
+```
+
+Результат:
+
+```text
+-rw-r--r-- 1 root root 3.8K May 27 10:17 my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+```
+
+Архив также был скопирован в корень репозитория:
+
+```text
+/root/08-ansible-06-module/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+```
+
+---
