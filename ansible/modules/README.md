@@ -182,3 +182,5 @@ python3 plugins/modules/my_own_module.py <<'EOF'
 {"ANSIBLE_MODULE_ARGS": {"path": "/tmp/my_own_module_local_test.txt", "content": "Hello from local module test"}}
 EOF
 ```
+Команда выполнена два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resmod.png)
