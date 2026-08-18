@@ -214,4 +214,4 @@ test_module.yml
 ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansible-playbook test_module.yml
 ```
 Playbook выполнен два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
-![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/respb.png)
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resspb.png)
