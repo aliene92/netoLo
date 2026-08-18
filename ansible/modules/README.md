@@ -184,3 +184,34 @@ EOF
 ```
 Команда выполнена два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
 ![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resmod.png)
+
+## Single task playbook для проверки module
+
+Для проверки модуля через Ansible был создан playbook:
+
+```text
+test_module.yml
+```
+
+Содержимое файла:
+
+```yaml
+---
+- name: Test custom Ansible module
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Create file using my own module
+      my_own_namespace.yandex_cloud_elk.my_own_module:
+        path: /tmp/my_own_module_playbook_test.txt
+        content: "Hello from custom Ansible module"
+```
+
+Запуск playbook:
+
+```bash
+ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansible-playbook test_module.yml
+```
+Playbook выполнен два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
+![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/respb.png)
