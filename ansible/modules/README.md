@@ -429,4 +429,5 @@ ansible-galaxy collection install my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
 ```bash
 ansible-playbook test_installed_collection.yml
 ```
+На скриншоте ниже видно успешную установку и запуск. при первом запуске создается файл, при повторном изменений не происходит.
 ![scr7](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/rescol.png)
