@@ -349,15 +349,14 @@ build_ignore:
 Сборка collection выполнялась из корня collection:
 
 ```bash
-cd /root/08-ansible-06-module/ansible_collections/my_own_namespace/yandex_cloud_elk
-
 ansible-galaxy collection build --force
 ```
 
 Результат:
 
 ```text
-Created collection for my_own_namespace.yandex_cloud_elk at /root/08-ansible-06-module/ansible_collections/my_own_namespace/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+Created collection for my_own_namespace.yandex_cloud_elk at /home/mrk/ansible/4p/ansible/my_own_namespace/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+
 ```
 
 Проверка архива:
@@ -369,13 +368,6 @@ ls -lh *.tar.gz
 Результат:
 
 ```text
--rw-r--r-- 1 root root 3.8K May 27 10:17 my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+-rw-rw-r-- 1 mrk mrk 5.2K Aug 19 01:32 my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
 ```
-
-Архив также был скопирован в корень репозитория:
-
-```text
-/root/08-ansible-06-module/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
-```
-
----
+![scr6](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/tar.png)
