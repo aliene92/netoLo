@@ -303,6 +303,6 @@ ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansi
 ```
 
 Повторный запуск подтверждает идемпотентность. Ниже скриншот.
-![scr5](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resrole.png)
+![scr5](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resrol.png)
 
 ---
