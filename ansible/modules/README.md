@@ -183,7 +183,7 @@ python3 plugins/modules/my_own_module.py <<'EOF'
 EOF
 ```
 Команда выполнена два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
-![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resmod.png)
+![scr3](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resmod.png)
 
 ## Single task playbook для проверки module
 
@@ -214,4 +214,95 @@ test_module.yml
 ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansible-playbook test_module.yml
 ```
 Playbook выполнен два раза, при первом запуске был создан файл, при втором не было выполнено никаких изменений. Скриншот ниже
-![scr2](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resspb.png)
+![scr4](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resspb.png)
+
+## Создание role внутри collection
+
+Single task playbook был преобразован в single task role внутри collection.
+
+Role создана в каталоге:
+
+```text
+ansible/my_own_namespace/yandex_cloud_elk/roles/create_file
+```
+
+Структура role:
+
+```text
+roles/create_file/
+├── defaults
+│   └── main.yml
+└── tasks
+    └── main.yml
+```
+
+---
+
+## Default-переменные role
+
+Файл:
+
+```text
+ansible/my_own_namespace/yandex_cloud_elk/roles/create_file/defaults/main.yml
+```
+
+Содержимое:
+
+```yaml
+---
+my_own_module_path: /tmp/my_own_module_role_test.txt
+my_own_module_content: "Hello from custom Ansible role"
+```
+
+---
+
+## Tasks role
+
+Файл:
+
+```text
+ansible/my_own_namespace/yandex_cloud_elk/roles/create_file/tasks/main.yml
+```
+
+Содержимое:
+
+```yaml
+---
+- name: Create file using my own module
+  my_own_namespace.yandex_cloud_elk.my_own_module:
+    path: "{{ my_own_module_path }}"
+    content: "{{ my_own_module_content }}"
+```
+
+---
+
+## Playbook для проверки role
+
+Для проверки role был создан playbook:
+
+```text
+test_role.yml
+```
+
+Содержимое:
+
+```yaml
+---
+- name: Test custom role from collection
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - role: my_own_namespace.yandex_cloud_elk.create_file
+```
+
+Запуск playbook:
+
+```bash
+ANSIBLE_COLLECTIONS_PATH=/home/mrk/.ansible/collections/ansible_collections ansible-playbook test_role.yml
+```
+
+Повторный запуск подтверждает идемпотентность. Ниже скриншот.
+![scr5](https://github.com/aliene92/netoLo/blob/main/ansible/modules/scrs/resrole.png)
+
+---
