@@ -291,3 +291,45 @@ plaindoll-0.0.2-SNAPSHOT.jar
 ---
 
 ## 8. Настройка Maven `settings.xml` в TeamCity
+
+Для выполнения команды:
+
+```bash
+mvn clean deploy
+```
+
+TeamCity должен иметь доступ к Nexus.
+
+Для этого был подготовлен Maven `settings.xml` с данными подключения к Nexus.
+
+Пример структуры файла:
+
+```xml
+<settings>
+    <servers>
+        <server>
+            <id>nexus-snapshots</id>
+            <username>teamcity</username>
+            <password>********</password>
+        </server>
+    </servers>
+</settings>
+```
+
+Пароль в репозиторий не добавлялся.
+
+Файл был загружен в TeamCity:
+
+```text
+Project Settings → Maven Settings → Upload settings file
+```
+
+После загрузки в build steps был выбран:
+
+```text
+User settings selection: settings.xml
+```
+
+---
+
+## 9. Создание проекта в TeamCity
