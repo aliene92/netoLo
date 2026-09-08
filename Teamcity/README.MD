@@ -260,3 +260,34 @@ https://github.com/aliene92/example-teamcity.git
 ## 7. Настройка `pom.xml`
 
 В `pom.xml` были настроены параметры Maven-проекта и публикация артефактов в Nexus.
+
+Основные параметры проекта:
+
+```xml
+<groupId>org.netology</groupId>
+<artifactId>plaindoll</artifactId>
+<packaging>jar</packaging>
+<version>0.0.2-SNAPSHOT</version>
+```
+
+Для публикации snapshot-артефактов был настроен Nexus:
+
+```xml
+<distributionManagement>
+    <snapshotRepository>
+        <id>nexus-snapshots</id>
+        <url>http://158.160.142.210:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
+```
+
+Также в проекте используется `maven-shade-plugin`, поэтому в результате сборки формируются два `.jar`-файла:
+
+```text
+original-plaindoll-0.0.2-SNAPSHOT.jar
+plaindoll-0.0.2-SNAPSHOT.jar
+```
+
+---
+
+## 8. Настройка Maven `settings.xml` в TeamCity
