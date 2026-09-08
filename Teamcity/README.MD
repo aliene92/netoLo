@@ -4,7 +4,7 @@
 Репозиторий с выполненным заданием:
 
 ```text
-https://github.com/aliene92/teamcity
+https://github.com/aliene92/example-teamcity.git
 ```
 
 В репозитории присутствуют:
@@ -40,7 +40,7 @@ systemctl is-active docker
 ```
 
 ---
-## 3. Установка TeamCity Server
+## Установка TeamCity Server
 
 На сервере `tc-server` был подготовлен каталог для данных TeamCity:
 
@@ -91,7 +91,7 @@ http://158.160.149.186:8111
 ![scr2](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/tcSrv.png)
 ---
 
-## 4. Установка Nexus Repository
+## Установка Nexus Repository
 На сервере `nexus` был подготовлен каталог для данных Nexus:
 
 ```bash
@@ -236,7 +236,7 @@ Agents → Unauthorized → tc-agent → Authorize
 
 После авторизации агент появился в пуле `Default` со статусом `Idle`.
 ![scr4](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agentAuthed.png)
-## 6. GitHub-репозиторий
+## GitHub-репозиторий
 
 Был создан fork исходного репозитория:
 
@@ -257,7 +257,7 @@ https://github.com/aliene92/example-teamcity.git
 ```
 
 ---
-## 7. Настройка `pom.xml`
+## Настройка `pom.xml`
 
 В `pom.xml` были настроены параметры Maven-проекта и публикация артефактов в Nexus.
 
@@ -290,7 +290,7 @@ plaindoll-0.0.2-SNAPSHOT.jar
 
 ---
 
-## 8. Настройка Maven `settings.xml` в TeamCity
+## Настройка Maven `settings.xml` в TeamCity
 
 Для выполнения команды:
 
@@ -332,7 +332,7 @@ User settings selection: settings.xml
 
 ---
 
-## 9. Создание проекта в TeamCity
+## Создание проекта в TeamCity
 
 В TeamCity был создан проект:
 
@@ -361,7 +361,7 @@ Username: aliene92
 
 ---
 
-## 10. Autodetect Maven build step
+## Autodetect Maven build step
 
 После подключения репозитория TeamCity автоматически определил Maven-проект и предложил Maven build step.
 
@@ -375,7 +375,7 @@ Goals: clean test
 Первоначальный Maven step был сохранён и затем изменён в соответствии с условиями задания.
 
 ---
-## 11. Настройка условий сборки
+## Настройка условий сборки
 
 По заданию требовалось:
 
@@ -443,7 +443,7 @@ master → mvn clean deploy
 
 ![scr6](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/mavenset.png)
 ---
-## 12. Проверка сборки master и публикации в Nexus
+## Проверка сборки master и публикации в Nexus
 
 После настройки build steps была запущена сборка ветки `master`.
 
@@ -471,7 +471,7 @@ maven-snapshots/org/netology/plaindoll/0.0.2-SNAPSHOT/
 
 ---
 
-## 13. Миграция build configuration в репозиторий
+## Миграция build configuration в репозиторий
 
 Для выполнения пункта задания:
 
@@ -512,7 +512,7 @@ When build starts: always use current settings
 
 ---
 
-## 14. Создание ветки `feature/add_reply`
+## Создание ветки `feature/add_reply`
 
 В GitHub была создана отдельная ветка:
 
@@ -524,7 +524,7 @@ feature/add_reply
 
 ---
 
-## 15. Добавление нового метода в `Welcomer`
+## Добавление нового метода в `Welcomer`
 
 В файл:
 
@@ -550,7 +550,7 @@ hunter
 
 ---
 
-## 16. Добавление теста для нового метода
+## Добавление теста для нового метода
 
 В файл:
 
@@ -575,7 +575,7 @@ public void welcomerSaysReplyWithHunter() {
 ![scr11](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/test6.png)
 ---
 
-## 17. Проверка автоматической сборки feature-ветки
+## Проверка автоматической сборки feature-ветки
 
 После push изменений в ветку:
 
@@ -602,7 +602,7 @@ Tests passed: 6
 
 ---
 
-## 18. Merge `feature/add_reply` в `master`
+## Merge `feature/add_reply` в `master`
 
 После успешной сборки feature-ветки был создан Pull Request:
 
@@ -635,7 +635,7 @@ Maven clean deploy — executed
 
 ---
 
-## 19. Проверка отсутствия `.jar` в TeamCity Artifacts до настройки artifact rules
+## Проверка отсутствия `.jar` в TeamCity Artifacts до настройки artifact rules
 
 После сборки `master` была проверена вкладка:
 
@@ -653,7 +653,7 @@ Build → Artifacts
 
 ---
 
-## 20. Настройка публикации `.jar` в TeamCity Artifacts
+## Настройка публикации `.jar` в TeamCity Artifacts
 
 В build configuration были настроены artifact rules.
 
@@ -687,7 +687,7 @@ target/*.jar => jars
 ![scr16](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/jar.png)
 ---
 
-## 21. Повторная сборка master и проверка артефактов
+## Повторная сборка master и проверка артефактов
 
 После настройки artifact rules была повторно запущена сборка `master`.
 
@@ -738,7 +738,7 @@ plaindoll-0.0.2-SNAPSHOT.jar
 
 ---
 
-## 23. Ссылки
+## Ссылки
 
 Репозиторий:
 
