@@ -522,3 +522,32 @@ feature/add_reply
 ![scr10](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/ghfar.png)
 Ветка была создана от `master`.
 
+---
+
+## 15. Добавление нового метода в `Welcomer`
+
+В файл:
+
+```text
+src/main/java/plaindoll/Welcomer.java
+```
+
+был добавлен новый метод:
+
+```java
+public String sayReply() {
+    return "A brave hunter always finds a way.";
+}
+```
+
+Метод возвращает строку, содержащую слово:
+
+```text
+hunter
+```
+
+Это соответствует условию задания.
+
+---
+
+## 16. Добавление теста для нового метода
