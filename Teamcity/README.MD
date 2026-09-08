@@ -505,7 +505,7 @@ When build starts: always use current settings
 ```text
 .teamcity/
 ```
-![scr9](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/tctogh1.png)
+![scr9](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/tcscr.png)
 Таким образом, конфигурация TeamCity была мигрирована в репозиторий в формате Kotlin DSL.
 
 После изменения настроек build configuration, в том числе artifact rules, TeamCity также обновил `.teamcity/` в репозитории.
