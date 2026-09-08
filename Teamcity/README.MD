@@ -625,7 +625,7 @@ PR был успешно смержен в `master`.
 ```text
 Tests passed: 6
 ```
-
+![scr13](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/master6.png)
 Для `master` снова отработала логика:
 
 ```text
