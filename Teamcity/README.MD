@@ -460,6 +460,7 @@ Maven clean deploy — executed
 BUILD SUCCESS
 ```
 
+![scr7](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/cleandeploy.png)
 Артефакт был опубликован в Nexus:
 
 ```text
