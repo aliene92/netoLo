@@ -92,4 +92,57 @@ http://158.160.149.186:8111
 ---
 
 ## 4. Установка Nexus Repository
+На сервере `nexus` был подготовлен каталог для данных Nexus:
 
+```bash
+mkdir -p /opt/nexus-data
+chown -R 200:200 /opt/nexus-data
+```
+
+Nexus был запущен в Docker:
+
+```bash
+docker run -d \
+  --name nexus \
+  --restart unless-stopped \
+  -p 8081:8081 \
+  -v /opt/nexus-data:/nexus-data \
+  sonatype/nexus3:latest
+```
+
+Проверка контейнера:
+
+```bash
+docker ps
+docker logs --tail=100 nexus
+```
+
+Nexus стал доступен по адресу:
+
+```text
+http://158.160.142.210:8081
+```
+
+Первичная авторизация выполнялась под пользователем `admin`. Начальный пароль был получен из файла внутри контейнера/volume Nexus:
+
+```bash
+cat /opt/nexus-data/admin.password
+```
+
+В Nexus использовались стандартные Maven-репозитории:
+
+```text
+maven-releases
+maven-snapshots
+maven-public
+```
+
+Для публикации snapshot-артефактов использовался репозиторий:
+
+```text
+http://158.160.142.210:8081/repository/maven-snapshots/
+```
+
+Для TeamCity был создан пользователь Nexus, предназначенный для публикации Maven-артефактов. Данные этого пользователя были добавлены в Maven `settings.xml`, который затем был загружен в TeamCity.
+
+---
