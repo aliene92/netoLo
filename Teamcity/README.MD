@@ -18,7 +18,7 @@ pom.xml
 Каталог `.teamcity/` содержит мигрированную конфигурацию TeamCity в формате Kotlin DSL.
 ## Подготовка к выполнению
 В яндекс клауд были созданы 3 виртуальные машины с заданными параметрами и названиями tc-server (158.160.149.186), tc-agent (158.160.169.6), nexus (158.160.142.210).
-![scr1](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/yaClVMs.png)
+![scr1](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/yaClVMs1.png)
 
 На всех виртуальных машинах была установлена Ubuntu Server 24.04.
 
