@@ -146,3 +146,93 @@ http://158.160.142.210:8081/repository/maven-snapshots/
 Для TeamCity был создан пользователь Nexus, предназначенный для публикации Maven-артефактов. Данные этого пользователя были добавлены в Maven `settings.xml`, который затем был загружен в TeamCity.
 
 ---
+## 5. Установка TeamCity Agent
+
+На сервере `tc-agent` был подготовлен каталог для агента:
+
+```bash
+mkdir -p /opt/teamcity-agent/conf
+mkdir -p /opt/teamcity-agent/work
+mkdir -p /opt/teamcity-agent/temp
+mkdir -p /opt/teamcity-agent/system
+
+chown -R 1000:1000 /opt/teamcity-agent
+chmod -R u+rwX,g+rwX /opt/teamcity-agent
+```
+
+Так как в стандартном образе TeamCity Agent отсутствовал Maven, был подготовлен собственный Docker-образ агента с Maven и JDK.
+
+Каталог для Dockerfile:
+
+```bash
+mkdir -p /opt/teamcity-agent-image
+cd /opt/teamcity-agent-image
+```
+
+Dockerfile:
+
+```Dockerfile
+FROM jetbrains/teamcity-agent:latest
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y maven openjdk-17-jdk && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+USER buildagent
+```
+
+Сборка образа:
+
+```bash
+docker build -t local/teamcity-agent-maven:latest .
+```
+
+Запуск агента:
+
+```bash
+docker run -d \
+  --name teamcity-agent \
+  --restart unless-stopped \
+  -e SERVER_URL="http://158.160.149.186:8111" \
+  -v /opt/teamcity-agent/conf:/data/teamcity_agent/conf \
+  -v /opt/teamcity-agent/work:/opt/buildagent/work \
+  -v /opt/teamcity-agent/temp:/opt/buildagent/temp \
+  -v /opt/teamcity-agent/system:/opt/buildagent/system \
+  local/teamcity-agent-maven:latest
+```
+
+Проверка установленного ПО внутри контейнера агента:
+
+```bash
+docker exec -it teamcity-agent bash -lc '
+java -version
+git --version
+mvn -version
+'
+```
+
+На агенте были доступны:
+
+```text
+Java
+Git
+Maven
+```
+
+После запуска агент появился в TeamCity в разделе:
+
+```text
+Agents → Unauthorized
+```
+![scr3](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agent.png)
+Агент был авторизован через web-интерфейс TeamCity:
+
+```text
+Agents → Unauthorized → tc-agent → Authorize
+```
+
+После авторизации агент появился в пуле `Default` со статусом `Idle`.
+![scr4](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agentauthed.png)
