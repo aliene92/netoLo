@@ -88,7 +88,8 @@ http://158.160.149.186:8111
 ```text
 http://158.160.149.186:8111
 ```
-
+![scr2](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/tcSrv.png)
 ---
 
-## 4. Разворачивание Nexus Repository
+## 4. Установка Nexus Repository
+
