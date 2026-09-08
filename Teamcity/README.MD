@@ -681,7 +681,6 @@ target/*.jar => jars
 взять все .jar-файлы из target/
 и опубликовать их в TeamCity Artifacts в каталог jars/
 ```
-![scr15](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/jar1.png)
 
 После сохранения настройки TeamCity обновил конфигурацию в `.teamcity/`.
 
@@ -695,7 +694,6 @@ target/*.jar => jars
 Сборка завершилась успешно:
 
 ```text
-Build #7
 Branch: master
 Status: Success
 Tests passed: 6
@@ -717,7 +715,7 @@ Publishing 2 files using [WebPublisher]: target/*.jar => jars
 На вкладке:
 
 ```text
-Build #7 → Artifacts
+Build → Artifacts
 ```
 
 появилась папка:
@@ -735,8 +733,8 @@ plaindoll-0.0.2-SNAPSHOT.jar
 
 Два файла появились из-за использования `maven-shade-plugin`.
 
+![scr15](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/jar2.png)
 
-<img width="3071" height="1752" alt="image" src="https://github.com/user-attachments/assets/6e8688c3-5d2e-4246-87a6-6b0792cdcaa7" />
 
 ---
 
