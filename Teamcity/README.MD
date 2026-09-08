@@ -576,3 +576,30 @@ public void welcomerSaysReplyWithHunter() {
 ---
 
 ## 17. Проверка автоматической сборки feature-ветки
+
+После push изменений в ветку:
+
+```text
+feature/add_reply
+```
+
+TeamCity автоматически запустил сборку этой ветки.
+
+Ожидаемое поведение для feature-ветки:
+
+```text
+Maven clean test — executed
+Maven clean deploy — skipped
+```
+
+Сборка feature-ветки завершилась успешно:
+
+```text
+Tests passed: 6
+```
+![scr12](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/bldftr.png)
+Это подтвердило, что условие для не-default веток работает корректно.
+
+---
+
+## 18. Merge `feature/add_reply` в `master`
