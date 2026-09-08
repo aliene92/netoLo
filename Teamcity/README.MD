@@ -333,3 +333,32 @@ User settings selection: settings.xml
 ---
 
 ## 9. Создание проекта в TeamCity
+
+В TeamCity был создан проект:
+
+```text
+example-teamcity
+```
+
+Проект был создан на основе GitHub-репозитория:
+
+```text
+https://github.com/aliene92/example-teamcity.git
+```
+
+Параметры VCS Root:
+
+```text
+Type of VCS: Git
+Fetch URL: https://github.com/aliene92/example-teamcity.git
+Default branch: refs/heads/master
+Branch specification: +:refs/heads/*
+Authentication method: Password / personal access token
+Username: aliene92
+```
+
+Для доступа к GitHub использовался Personal Access Token. Сам токен в репозиторий не сохранялся.
+
+---
+
+## 10. Autodetect Maven build step
