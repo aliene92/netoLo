@@ -682,7 +682,9 @@ target/*.jar => jars
 и опубликовать их в TeamCity Artifacts в каталог jars/
 ```
 ![scr15](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/jar1.png)
+
 После сохранения настройки TeamCity обновил конфигурацию в `.teamcity/`.
+
 ![scr16](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/jar.png)
 ---
 
