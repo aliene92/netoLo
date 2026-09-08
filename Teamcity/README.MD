@@ -440,5 +440,6 @@ master → mvn clean deploy
 | ------------------- | ------------------ |
 | `master`            | `mvn clean deploy` |
 | `feature/add_reply` | `mvn clean test`   |
-![scr6(https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/mavenset.png)
+
+![scr6](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/mavenset.png)
 ---
