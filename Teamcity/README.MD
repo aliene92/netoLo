@@ -655,3 +655,36 @@ Build → Artifacts
 
 ## 20. Настройка публикации `.jar` в TeamCity Artifacts
 
+В build configuration были настроены artifact rules.
+
+Раздел:
+
+```text
+Build → Settings → General
+```
+
+Поле:
+
+```text
+Artifact paths
+```
+
+Значение:
+
+```text
+target/*.jar => jars
+```
+
+Это правило означает:
+
+```text
+взять все .jar-файлы из target/
+и опубликовать их в TeamCity Artifacts в каталог jars/
+```
+
+После сохранения настройки TeamCity обновил конфигурацию в `.teamcity/`.
+
+---
+
+## 21. Повторная сборка master и проверка артефактов
+
