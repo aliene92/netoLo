@@ -362,3 +362,83 @@ Username: aliene92
 ---
 
 ## 10. Autodetect Maven build step
+
+После подключения репозитория TeamCity автоматически определил Maven-проект и предложил Maven build step.
+
+Autodetect обнаружил:
+
+```text
+Path to POM: pom.xml
+Goals: clean test
+```
+
+Первоначальный Maven step был сохранён и затем изменён в соответствии с условиями задания.
+
+---
+## 11. Настройка условий сборки
+
+По заданию требовалось:
+
+```text
+master → mvn clean deploy
+остальные ветки → mvn clean test
+```
+
+Для этого в build configuration были настроены два Maven build step.
+
+### Step 1 — Maven clean test
+
+```text
+Step name: Maven clean test
+Runner: Maven
+Goals: clean test
+Path to POM file: pom.xml
+User settings selection: settings.xml
+```
+
+Условие выполнения:
+
+```text
+teamcity.build.branch.is_default equals false
+```
+
+Это означает, что шаг выполняется только в ветках, отличных от default branch.
+
+Например:
+
+```text
+feature/add_reply → mvn clean test
+```
+
+### Step 2 — Maven clean deploy
+
+```text
+Step name: Maven clean deploy
+Runner: Maven
+Goals: clean deploy
+Path to POM file: pom.xml
+User settings selection: settings.xml
+```
+
+Условие выполнения:
+
+```text
+teamcity.build.branch.is_default equals true
+```
+
+Это означает, что шаг выполняется только в default branch, то есть в `master`.
+
+Например:
+
+```text
+master → mvn clean deploy
+```
+
+Итоговая логика:
+
+| Ветка               | Выполняемый шаг    |
+| ------------------- | ------------------ |
+| `master`            | `mvn clean deploy` |
+| `feature/add_reply` | `mvn clean test`   |
+
+---
