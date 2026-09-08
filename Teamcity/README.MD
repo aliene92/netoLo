@@ -235,4 +235,4 @@ Agents → Unauthorized → tc-agent → Authorize
 ```
 
 После авторизации агент появился в пуле `Default` со статусом `Idle`.
-![scr4](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agentauthed.png)
+![scr4](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agentAuthed.png)
