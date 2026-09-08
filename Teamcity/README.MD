@@ -738,5 +738,16 @@ plaindoll-0.0.2-SNAPSHOT.jar
 
 ---
 
-## 22. Итоговая проверка
+## 23. Ссылки
 
+Репозиторий:
+
+```text
+https://github.com/aliene92/example-teamcity/
+```
+
+Каталог с конфигурацией TeamCity:
+
+```text
+https://github.com/aliene92/example-teamcity/tree/master/.teamcity
+```
