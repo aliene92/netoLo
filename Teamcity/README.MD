@@ -236,3 +236,27 @@ Agents → Unauthorized → tc-agent → Authorize
 
 После авторизации агент появился в пуле `Default` со статусом `Idle`.
 ![scr4](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/agentAuthed.png)
+## 6. GitHub-репозиторий
+
+Был создан fork исходного репозитория:
+
+```text
+https://github.com/aragastmatb/example-teamcity
+```
+
+Fork-репозиторий:
+
+```text
+https://github.com/aliene92/example-teamcity
+```
+
+В дальнейшем TeamCity был настроен на работу именно с fork-репозиторием:
+
+```text
+https://github.com/aliene92/example-teamcity.git
+```
+
+---
+## 7. Настройка `pom.xml`
+
+В `pom.xml` были настроены параметры Maven-проекта и публикация артефактов в Nexus.
