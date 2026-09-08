@@ -551,3 +551,28 @@ hunter
 ---
 
 ## 16. Добавление теста для нового метода
+
+В файл:
+
+```text
+src/test/java/plaindoll/WelcomerTest.java
+```
+
+был добавлен новый тест:
+
+```java
+@Test
+public void welcomerSaysReplyWithHunter() {
+    assertThat(welcomer.sayReply(), containsString("hunter"));
+}
+```
+
+После добавления теста общее количество тестов стало:
+
+```text
+6
+```
+
+---
+
+## 17. Проверка автоматической сборки feature-ветки
