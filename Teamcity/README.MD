@@ -690,3 +690,55 @@ target/*.jar => jars
 
 ## 21. Повторная сборка master и проверка артефактов
 
+После настройки artifact rules была повторно запущена сборка `master`.
+
+Сборка завершилась успешно:
+
+```text
+Build #7
+Branch: master
+Status: Success
+Tests passed: 6
+```
+
+В build log подтверждено:
+
+```text
+BUILD SUCCESS
+```
+
+Также подтверждена публикация `.jar` как TeamCity Artifacts:
+
+```text
+Collecting files to publish: [target/*.jar => jars]
+Publishing 2 files using [WebPublisher]: target/*.jar => jars
+```
+
+На вкладке:
+
+```text
+Build #7 → Artifacts
+```
+
+появилась папка:
+
+```text
+jars
+```
+
+Внутри опубликованы файлы:
+
+```text
+original-plaindoll-0.0.2-SNAPSHOT.jar
+plaindoll-0.0.2-SNAPSHOT.jar
+```
+
+Два файла появились из-за использования `maven-shade-plugin`.
+
+
+<img width="3071" height="1752" alt="image" src="https://github.com/user-attachments/assets/6e8688c3-5d2e-4246-87a6-6b0792cdcaa7" />
+
+---
+
+## 22. Итоговая проверка
+
