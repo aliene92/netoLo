@@ -513,3 +513,12 @@ When build starts: always use current settings
 ---
 
 ## 14. Создание ветки `feature/add_reply`
+
+В GitHub была создана отдельная ветка:
+
+```text
+feature/add_reply
+```
+![scr10](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/ghfar.png)
+Ветка была создана от `master`.
+
