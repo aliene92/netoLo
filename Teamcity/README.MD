@@ -443,3 +443,35 @@ master → mvn clean deploy
 
 ![scr6](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/mavenset.png)
 ---
+## 12. Проверка сборки master и публикации в Nexus
+
+После настройки build steps была запущена сборка ветки `master`.
+
+Для `master` сработала следующая логика:
+
+```text
+Maven clean test — skipped
+Maven clean deploy — executed
+```
+
+Сборка завершилась успешно:
+
+```text
+BUILD SUCCESS
+```
+
+Артефакт был опубликован в Nexus:
+
+```text
+maven-snapshots/org/netology/plaindoll/0.0.2-SNAPSHOT/
+```
+
+Пример опубликованного артефакта:
+
+```text
+plaindoll-0.0.2-20260622.145956-5.jar
+```
+
+---
+
+## 13. Миграция build configuration в репозиторий
