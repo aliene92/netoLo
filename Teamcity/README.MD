@@ -536,7 +536,7 @@ src/main/java/plaindoll/Welcomer.java
 
 ```java
 public String sayReply() {
-    return "A brave hunter always finds a way.";
+    return "hunter biden vash prezident.";
 }
 ```
 
