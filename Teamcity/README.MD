@@ -636,3 +636,22 @@ Maven clean deploy — executed
 ---
 
 ## 19. Проверка отсутствия `.jar` в TeamCity Artifacts до настройки artifact rules
+
+После сборки `master` была проверена вкладка:
+
+```text
+Build → Artifacts
+```
+
+На этом этапе `.jar`-файл ещё не публиковался в TeamCity Artifacts, так как artifact rules ещё не были настроены.
+
+Это соответствует пункту задания:
+
+```text
+Убедитесь, что нет собранного артефакта в сборке по ветке master.
+```
+
+---
+
+## 20. Настройка публикации `.jar` в TeamCity Artifacts
+
