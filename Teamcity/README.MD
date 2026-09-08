@@ -572,7 +572,7 @@ public void welcomerSaysReplyWithHunter() {
 ```text
 6
 ```
-
+![scr11](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/test6.png)
 ---
 
 ## 17. Проверка автоматической сборки feature-ветки
