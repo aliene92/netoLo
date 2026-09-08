@@ -603,3 +603,36 @@ Tests passed: 6
 ---
 
 ## 18. Merge `feature/add_reply` в `master`
+
+После успешной сборки feature-ветки был создан Pull Request:
+
+```text
+feature/add_reply → master
+```
+
+Pull Request:
+
+```text
+Add hunter reply
+```
+
+PR был успешно смержен в `master`.
+
+После merge TeamCity автоматически запустил новую сборку ветки `master`.
+
+Сборка `master` после merge прошла успешно:
+
+```text
+Tests passed: 6
+```
+
+Для `master` снова отработала логика:
+
+```text
+Maven clean test — skipped
+Maven clean deploy — executed
+```
+
+---
+
+## 19. Проверка отсутствия `.jar` в TeamCity Artifacts до настройки artifact rules
