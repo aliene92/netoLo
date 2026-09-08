@@ -642,7 +642,7 @@ Maven clean deploy — executed
 ```text
 Build → Artifacts
 ```
-
+![scr14](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/noart.png)
 На этом этапе `.jar`-файл ещё не публиковался в TeamCity Artifacts, так как artifact rules ещё не были настроены.
 
 Это соответствует пункту задания:
