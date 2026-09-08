@@ -472,3 +472,44 @@ maven-snapshots/org/netology/plaindoll/0.0.2-SNAPSHOT/
 ---
 
 ## 13. Миграция build configuration в репозиторий
+
+Для выполнения пункта задания:
+
+```text
+Мигрируйте build configuration в репозиторий.
+```
+
+В TeamCity были включены Versioned Settings.
+
+Раздел:
+
+```text
+Project Settings → Versioned Settings
+```
+
+Параметры:
+
+```text
+Synchronization enabled
+Settings format: Kotlin
+Settings path in VCS: .teamcity
+Allow editing project settings via UI: enabled
+Store passwords and API tokens outside of VCS: enabled
+When build starts: always use current settings
+```
+
+После включения Versioned Settings TeamCity закоммитил конфигурацию в GitHub.
+
+В репозитории появился каталог:
+
+```text
+.teamcity/
+```
+![scr9](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/tctogh.png)
+Таким образом, конфигурация TeamCity была мигрирована в репозиторий в формате Kotlin DSL.
+
+После изменения настроек build configuration, в том числе artifact rules, TeamCity также обновил `.teamcity/` в репозитории.
+
+---
+
+## 14. Создание ветки `feature/add_reply`
