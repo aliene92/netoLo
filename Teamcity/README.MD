@@ -136,7 +136,7 @@ maven-releases
 maven-snapshots
 maven-public
 ```
-
+![scr25](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/nexus.png)
 Для публикации snapshot-артефактов использовался репозиторий:
 
 ```text
