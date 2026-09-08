@@ -467,11 +467,7 @@ BUILD SUCCESS
 maven-snapshots/org/netology/plaindoll/0.0.2-SNAPSHOT/
 ```
 
-Пример опубликованного артефакта:
-
-```text
-plaindoll-0.0.2-20260622.145956-5.jar
-```
+![scr8](https://github.com/aliene92/netoLo/blob/main/Teamcity/scr/nexusart.png)
 
 ---
 
