@@ -277,3 +277,22 @@ Nagios преимущественно работает по pull-модели: �
 git clone https://github.com/influxdata/sandbox.git
 ```
 ![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/trueclon1.png)
+
+### Запуск TICK-стека
+
+```bash
+set -a
+source .env-latest
+set +a
+
+docker-compose up -d --build
+```
+
+Проверка контейнеров:
+
+```bash
+docker-compose ps
+```
+
+Итоговое состояние контейнеров:
+![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/sucup.png)
