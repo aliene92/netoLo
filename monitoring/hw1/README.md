@@ -425,3 +425,41 @@ docker_container_status
 ---
 
 ## 10. Скриншоты
+
+### Скриншот 1. Веб-интерфейс Chronograf
+
+Адрес:
+
+```text
+http://81.26.185.223:8888
+```
+
+![scr3](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/webface.png)
+
+
+---
+
+### Скриншот 2. График утилизации CPU
+
+Пример запроса:
+
+```sql
+SELECT mean("usage_system")
+FROM "telegraf"."autogen"."cpu"
+WHERE time > :dashboardTime:
+GROUP BY time(:interval:), "host"
+FILL(null)
+```
+![scr4](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/cpudash.png)
+
+---
+
+### Скриншот 3. Список Docker measurements
+
+![scr5](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/checkbd.png)
+
+![scr6](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/grafs.png)
+
+
+
+---
