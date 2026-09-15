@@ -295,7 +295,7 @@ docker-compose ps
 ```
 
 Итоговое состояние контейнеров:
-![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/sucup.png)
+![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/dcps.png)
 Chronograf был доступен по адресу:
 
 ```text
