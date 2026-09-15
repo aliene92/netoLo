@@ -45,4 +45,4 @@ Prometheus используется как источник данных для 
 ├── .gitignore
 └── README.md
 ````
-<img width="1641" height="720" alt="image" src="https://github.com/user-attachments/assets/91ed1e39-098b-460c-9734-ea70cf508b56" />
+![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
