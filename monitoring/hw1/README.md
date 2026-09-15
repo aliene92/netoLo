@@ -269,7 +269,7 @@ Nagios преимущественно работает по pull-модели: �
 ---
 ## 7. Практическая часть: запуск TICK-стека
 
-Практическая часть выполнялась на ВМ в яндекс клауд под управлением Debian 12 c IP адресом 158.160.223.2
+Практическая часть выполнялась на ВМ в яндекс клауд под управлением Debian 12 c IP адресом 81.26.185.223
 
 ### Клонирование репозитория
 
@@ -304,3 +304,124 @@ http://81.26.185.223:8888
 
 ---
 
+## 8. Настройка Docker-метрик в Telegraf
+
+Для сбора Docker-метрик в конфигурацию Telegraf был добавлен input plugin:
+
+```toml
+[[inputs.docker]]
+  endpoint = "unix:///var/run/docker.sock"
+  timeout = "5s"
+```
+
+Также для доступа Telegraf к Docker API в `docker-compose.yml` был настроен проброс Docker socket:
+
+```yaml
+volumes:
+  - ./telegraf/:/etc/telegraf/
+  - /var/run/docker.sock:/var/run/docker.sock
+```
+
+Для учебного стенда был предоставлен доступ к Docker socket:
+
+```bash
+chmod 666 /var/run/docker.sock
+```
+
+После этого контейнер Telegraf был пересоздан:
+
+```bash
+docker-compose stop telegraf
+docker-compose rm -f telegraf
+docker-compose up -d telegraf
+```
+
+Проверка логов Telegraf:
+
+```bash
+docker-compose logs --tail=100 telegraf
+```
+
+Результат:
+
+```text
+Starting Telegraf 1.39.0
+Loaded inputs: cpu docker influxdb system
+Loaded outputs: influxdb
+Tags enabled: host=telegraf-getting-started
+```
+
+---
+
+## 9. Результаты проверки
+
+Проверка баз данных InfluxDB:
+
+```bash
+docker exec -it sandbox_influxdb_1 influx -execute 'SHOW DATABASES'
+```
+
+Результат:
+
+```text
+name: databases
+name
+----
+_internal
+telegraf
+```
+
+Проверка measurements:
+
+```bash
+docker exec -it sandbox_influxdb_1 influx -database telegraf -execute 'SHOW MEASUREMENTS'
+```
+
+Результат:
+
+```text
+name: measurements
+name
+----
+cpu
+docker
+docker_container_blkio
+docker_container_cpu
+docker_container_mem
+docker_container_net
+docker_container_status
+influxdb
+influxdb_cmdline
+influxdb_cq
+influxdb_database
+influxdb_httpd
+influxdb_memstats
+influxdb_queryExecutor
+influxdb_runtime
+influxdb_shard
+influxdb_subscriber
+influxdb_system
+influxdb_tsm1_cache
+influxdb_tsm1_engine
+influxdb_tsm1_filestore
+influxdb_tsm1_wal
+influxdb_udp
+influxdb_write
+system
+```
+
+Наличие следующих measurements подтверждает, что Docker-метрики успешно собираются:
+
+```text
+docker
+docker_container_blkio
+docker_container_cpu
+docker_container_mem
+docker_container_net
+docker_container_status
+```
+![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/checkbd.png)
+
+---
+
+## 10. Скриншоты
