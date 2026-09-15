@@ -3,7 +3,7 @@
 
 В рамках домашнего задания был самостоятельно развёрнут стенд мониторинга на VM в yandex cloud без использования готовой директории `help`.
 
-![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/vmya.png)
+![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/vmya.png)
 
 
 Используемые компоненты:
