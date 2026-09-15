@@ -276,4 +276,4 @@ Nagios преимущественно работает по pull-модели: �
 ```bash
 git clone https://github.com/influxdata/sandbox.git
 ```
-
+![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/trueclon.png)
