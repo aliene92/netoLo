@@ -296,3 +296,11 @@ docker-compose ps
 
 Итоговое состояние контейнеров:
 ![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw1/scr/sucup.png)
+Chronograf был доступен по адресу:
+
+```text
+http://81.26.185.223:8888
+```
+
+---
+
