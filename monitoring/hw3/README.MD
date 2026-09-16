@@ -261,3 +261,35 @@ yellow open   logstash-2026.09.16              nm3P4E_4QLKxyF1-MfJU0A   1   1   
 ```
 
 ## Kibana
+
+Kibana доступна по адресу:
+
+```text
+http://158.160.201.22:5601
+```
+
+![scr8](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/indexpatern.png)
+
+
+В Kibana были созданы два index pattern / data view:
+
+```text
+logstash-*
+tcp-json-*
+```
+
+Для обоих index pattern выбрано поле времени:
+
+```text
+@timestamp
+```
+![scr9](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/logstash.png)
+![scr10](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/tcpJson.png)
+
+
+В разделе Discover проверен просмотр логов:
+
+- `logstash-*` — Docker-логи, собранные Filebeat;
+- `tcp-json-*` — JSON-события, отправленные в Logstash по TCP.
+
+## Конфигурация Logstash
