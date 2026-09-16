@@ -74,3 +74,84 @@ logstash             docker.elastic.co/logstash/logstash:7.17.28             "/u
 - `filebeat`.
 
 ## Проверка Elasticsearch
+
+Проверка состояния кластера:
+
+```bash
+curl -s http://127.0.0.1:9200/_cluster/health?pretty
+```
+
+![scr3](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/ElasticsearchHealth.png)
+
+
+Результат:
+
+```json
+{
+  "cluster_name" : "netology-elk",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 2,
+  "number_of_data_nodes" : 2,
+  "active_primary_shards" : 9,
+  "active_shards" : 9,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 1,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 90.0
+}
+
+```
+
+Статус `yellow` связан с тем, что для пользовательских индексов настроена одна реплика, которая не размещается в текущей учебной hot/warm-схеме. На работу стека это не влияет: индексы создаются, документы записываются и доступны для поиска.
+
+Проверка нод:
+
+```bash
+curl -s http://127.0.0.1:9200/_cat/nodes?v
+```
+
+![scr4](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/Elasticsearchnode.png)
+
+
+Результат:
+
+```text
+ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+172.18.0.3           20          97  11    0.05    0.33     0.92 hims      *      elasticsearch-hot
+172.18.0.2           52          97  11    0.05    0.33     0.92 imw       -      elasticsearch-warm
+```
+
+Проверка индексов:
+
+```bash
+curl -s http://127.0.0.1:9200/_cat/indices?v
+```
+
+![scr5](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/indices.png)
+
+
+Результат:
+
+```text
+health status index                            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases                 xI1EcoKvT-GTH4E307_P5w   1   0         43            0     39.7mb         39.7mb
+green  open   .kibana_task_manager_7.17.28_001 GrFwdIwtQDa_k5nBTV-SdA   1   0         17         2328      297kb          297kb
+green  open   .kibana_7.17.28_001              ltSckXc7StWBALAwVO5XKg   1   0         15            0      2.3mb          2.3mb
+green  open   .apm-custom-link                 FU14xy-BS1KHJQ4D6A98Rg   1   0          0            0       227b           227b
+green  open   .apm-agent-configuration         f4cenytkSP-M2mZhYK-FQw   1   0          0            0       227b           227b
+yellow open   tcp-json-2026.09.16              cDQNsHZpQgGxa9bVBJcLCg   1   1          1            0      8.8kb          8.8kb
+yellow open   logstash-2026.09.16              nm3P4E_4QLKxyF1-MfJU0A   1   1        553            0    903.5kb        903.5kb
+
+```
+
+В результате были созданы пользовательские индексы:
+
+- `logstash-2026.09.16`;
+- `tcp-json-2026.09.16`.
+
+## Проверка TCP JSON input в Logstash
