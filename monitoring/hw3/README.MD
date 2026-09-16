@@ -73,6 +73,9 @@ logstash             docker.elastic.co/logstash/logstash:7.17.28             "/u
 - `kibana`;
 - `filebeat`.
 
+Скриншот веб интерфейса
+![scr35](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/webface.png)
+
 ## Проверка Elasticsearch
 
 Проверка состояния кластера:
