@@ -40,8 +40,8 @@ Prometheus используется как источник данных для 
 │   └── provisioning
 │       └── datasources
 │           └── prometheus.yml
-├── prometheus
-└── └── prometheus.yml
+└── prometheus
+    └── prometheus.yml
 ````
 ![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
 
