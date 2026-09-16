@@ -129,3 +129,44 @@ GRAFANA_SMTP_FROM=aliene-9-2@yandex.ru
 ---
 
 ## Конфигурация Prometheus
+
+Файл: `prometheus/prometheus.yml`
+
+```yaml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - prometheus:9090
+
+  - job_name: node-exporter
+    static_configs:
+      - targets:
+          - node-exporter:9100
+```
+
+---
+
+## Конфигурация Grafana Datasource
+
+Файл: `grafana/provisioning/datasources/prometheus.yml`
+
+```yaml
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+```
+
+---
+
+## Запуск стенда
