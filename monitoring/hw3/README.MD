@@ -295,4 +295,168 @@ tcp-json-*
 - `logstash-*` — Docker-логи, собранные Filebeat;
 - `tcp-json-*` — JSON-события, отправленные в Logstash по TCP.
 
-## Конфигурация Logstash
+## Ответы
+#### "скриншот docker ps через 5 минут после старта всех контейнеров (их должно быть 5)"
+![scr11](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/dockerup.png)
+\
+#### "скриншот интерфейса kibana"
+![scr12](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/webface.png)
+\
+#### "docker-compose манифест (если вы не использовали директорию help)"
+ссылка на файл https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/files/docker-compose.yml
+текст файла:
+```text
+services:
+  elasticsearch-hot:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
+    container_name: elasticsearch-hot
+    environment:
+      - node.name=elasticsearch-hot
+      - cluster.name=netology-elk
+      - discovery.seed_hosts=elasticsearch-hot,elasticsearch-warm
+      - cluster.initial_master_nodes=elasticsearch-hot,elasticsearch-warm
+      - node.roles=master,data_hot,data_content,ingest
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_hot_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - elk
+
+  elasticsearch-warm:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
+    container_name: elasticsearch-warm
+    environment:
+      - node.name=elasticsearch-warm
+      - cluster.name=netology-elk
+      - discovery.seed_hosts=elasticsearch-hot,elasticsearch-warm
+      - cluster.initial_master_nodes=elasticsearch-hot,elasticsearch-warm
+      - node.roles=master,data_warm,ingest
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_warm_data:/usr/share/elasticsearch/data
+    networks:
+      - elk
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.28
+    container_name: logstash
+    environment:
+      - LS_JAVA_OPTS=-Xms256m -Xmx256m
+      - xpack.monitoring.enabled=false
+    volumes:
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+    ports:
+      - "5000:5000"
+      - "5044:5044"
+    depends_on:
+      - elasticsearch-hot
+      - elasticsearch-warm
+    networks:
+      - elk
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.28
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch-hot:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch-hot
+    networks:
+      - elk
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.28
+    container_name: filebeat
+    user: root
+    command: filebeat -e -strict.perms=false
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - logstash
+    networks:
+      - elk
+
+volumes:
+  elasticsearch_hot_data:
+  elasticsearch_warm_data:
+
+networks:
+  elk:
+    driver: bridge
+```
+#### "ваши yml-конфигурации для стека (если вы не использовали директорию help)."
+ссылка на файл filebeat.yml https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/files/filebeat.yml
+текст файла:
+```text
+filebeat.inputs:
+  - type: container
+    enabled: true
+    paths:
+      - /var/lib/docker/containers/*/*.log
+
+processors:
+  - add_docker_metadata:
+      host: "unix:///var/run/docker.sock"
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging.level: info
+```
+ссылка на файл logstash.conf https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/files/logstash.conf
+текст файла:
+```text
+input {
+  beats {
+    port => 5044
+  }
+
+  tcp {
+    port => 5000
+    codec => json
+    tags => ["tcp-json"]
+  }
+}
+
+filter {
+  if [container][name] {
+    mutate {
+      add_field => {
+        "docker_container" => "%{[container][name]}"
+      }
+    }
+  }
+}
+
+output {
+  if "tcp-json" in [tags] {
+    elasticsearch {
+      hosts => ["http://elasticsearch-hot:9200"]
+      index => "tcp-json-%{+YYYY.MM.dd}"
+    }
+  } else {
+    elasticsearch {
+      hosts => ["http://elasticsearch-hot:9200"]
+      index => "logstash-%{+YYYY.MM.dd}"
+    }
+  }
+}
+```
