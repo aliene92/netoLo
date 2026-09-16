@@ -207,3 +207,10 @@ Prometheus: 302
 Node Exporter: 200
 ```
 ![scr4](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/srvsup.png)
+
+Проверка targets в Prometheus:
+
+```bash
+curl -s http://127.0.0.1:9090/api/v1/targets | grep -E '"health"|"job"|"scrapeUrl"'
+```
+![scr5](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/text.png)
