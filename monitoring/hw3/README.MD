@@ -36,4 +36,4 @@ Logstash принимает события от Filebeat по Beats input на �
         └── logstash.conf
 ```
 
-![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
+![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/tree.png)
