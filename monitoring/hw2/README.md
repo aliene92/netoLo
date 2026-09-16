@@ -109,3 +109,23 @@ volumes:
   prometheus_data:
   grafana_data:
 ```
+SMTP-параметры вынесены в файл `.env`, который не добавляется в репозиторий.
+
+Пример `.env`:
+
+```env
+GRAFANA_SMTP_USER=aliene-9-2@yandex.ru
+GRAFANA_SMTP_PASSWORD=APP_PASSWORD
+GRAFANA_SMTP_FROM=aliene-9-2@yandex.ru
+```
+
+Файл `.gitignore`:
+
+```gitignore
+.env
+*.log
+```
+
+---
+
+## Конфигурация Prometheus
