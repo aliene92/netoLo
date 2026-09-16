@@ -380,3 +380,14 @@ Free disk space is lower than 20%
 ```
 
 ## Канал уведомлений
+
+В качестве канала уведомлений был настроен Email contact point через SMTP.
+
+Для проверки доставки уведомлений было отправлено тестовое событие от Grafana Alerting. Событие успешно доставлено на email.
+
+![scr9](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/notset.png)
+![scr10](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/notification.png)
+
+---
+
+# Задание 4
