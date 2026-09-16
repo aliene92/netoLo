@@ -225,3 +225,33 @@ Prometheus успешно обнаружил targets:
 ---
 
 # Задание 1
+
+Grafana была развёрнута самостоятельно. В качестве источника данных был подключён Prometheus.
+
+Prometheus подключён через provisioning-файл:
+
+```text
+grafana/provisioning/datasources/prometheus.yml
+```
+
+![scr6](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/promcon.png)
+
+---
+
+# Задание 2
+
+Был создан Dashboard:
+
+```text
+Node Exporter Monitoring
+```
+
+Dashboard содержит панели:
+
+* CPU utilization, %;
+* Load Average 1/5/15;
+* Free RAM, %;
+* Free disk space, %.
+
+![scr7](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/dashb.png)
+
