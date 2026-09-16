@@ -294,3 +294,89 @@ node_load15{job="node-exporter"}
 # Задание 3
 
 Для Dashboard были созданы alert rules:
+
+* High CPU usage;
+* High Load Average;
+* Low free RAM;
+* Low disk space.
+
+Также был создан тестовый alert `Alerts` для проверки доставки уведомлений.
+
+![scr8](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/testalert.png)
+
+
+## Alert rules
+
+### High CPU usage
+
+```promql
+100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{job="node-exporter",mode="idle"}[5m])))
+```
+
+Условие:
+
+```text
+IS ABOVE 80
+```
+
+Описание:
+
+```text
+CPU usage is higher than 80%
+```
+
+### High Load Average
+
+```promql
+node_load1{job="node-exporter"}
+```
+
+Условие:
+
+```text
+IS ABOVE 2
+```
+
+Описание:
+
+```text
+Load average is higher than 2
+```
+
+### Low free RAM
+
+```promql
+100 * node_memory_MemAvailable_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"}
+```
+
+Условие:
+
+```text
+IS BELOW 20
+```
+
+Описание:
+
+```text
+Free RAM is lower than 20%
+```
+
+### Low disk space
+
+```promql
+100 * node_filesystem_avail_bytes{job="node-exporter",mountpoint="/",fstype!~"tmpfs|overlay|squashfs|proc|sysfs|devtmpfs"} / node_filesystem_size_bytes{job="node-exporter",mountpoint="/",fstype!~"tmpfs|overlay|squashfs|proc|sysfs|devtmpfs"}
+```
+
+Условие:
+
+```text
+IS BELOW 20
+```
+
+Описание:
+
+```text
+Free disk space is lower than 20%
+```
+
+## Канал уведомлений
