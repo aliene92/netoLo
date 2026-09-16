@@ -22,10 +22,10 @@ Prometheus используется как источник данных для 
 Виртуальная машина:
 
 - Ubuntu 24.04
-- IP-адрес: `51.250.41.54`;
-- Grafana: `http://51.250.41.54:3000`;
-- Prometheus: `http://51.250.41.54:9090`;
-- Node Exporter: `http://51.250.41.54:9100/metrics`.
+- IP-адрес: `81.26.176.118`;
+- Grafana: `http://81.26.176.118:3000`;
+- Prometheus: `http://81.26.176.118:9090`;
+- Node Exporter: `http://81.26.176.118:9100/metrics`.
 
 ---
 
@@ -88,7 +88,7 @@ services:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
 
-      GF_SERVER_ROOT_URL: "http://192.168.1.92:3000/"
+      GF_SERVER_ROOT_URL: "http://81.26.176.118:3000/"
 
       GF_SMTP_ENABLED: "true"
       GF_SMTP_HOST: "smtp.yandex.ru:465"
