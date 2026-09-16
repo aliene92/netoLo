@@ -255,3 +255,42 @@ Dashboard содержит панели:
 
 ![scr7](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/dashb.png)
 
+## PromQL-запросы
+
+### CPU utilization, %
+
+```promql
+100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{job="node-exporter",mode="idle"}[5m])))
+```
+
+### Load Average 1/5/15
+
+```promql
+node_load1{job="node-exporter"}
+```
+
+```promql
+node_load5{job="node-exporter"}
+```
+
+```promql
+node_load15{job="node-exporter"}
+```
+
+### Free RAM, %
+
+```promql
+100 * node_memory_MemAvailable_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"}
+```
+
+### Free disk space, %
+
+```promql
+100 * node_filesystem_avail_bytes{job="node-exporter",mountpoint="/",fstype!~"tmpfs|overlay|squashfs|proc|sysfs|devtmpfs"} / node_filesystem_size_bytes{job="node-exporter",mountpoint="/",fstype!~"tmpfs|overlay|squashfs|proc|sysfs|devtmpfs"}
+```
+
+---
+
+# Задание 3
+
+Для Dashboard были созданы alert rules:
