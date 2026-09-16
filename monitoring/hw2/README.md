@@ -42,7 +42,6 @@ Prometheus используется как источник данных для 
 │           └── prometheus.yml
 ├── prometheus
 │   └── prometheus.yml
-├── .gitignore
 └── README.md
 ````
 ![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
