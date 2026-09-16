@@ -190,3 +190,20 @@ prometheus-node-exporter   prom/node-exporter:latest   Up              0.0.0.0:9
 prometheus-server          prom/prometheus:latest      Up              0.0.0.0:9090->9090/tcp
 ```
 ![scr3](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/dcup.png)
+
+Проверка доступности сервисов:
+
+```bash
+curl -s -o /dev/null -w "Grafana: %{http_code}\n" http://127.0.0.1:3000/login
+curl -s -o /dev/null -w "Prometheus: %{http_code}\n" http://127.0.0.1:9090/
+curl -s -o /dev/null -w "Node Exporter: %{http_code}\n" http://127.0.0.1:9100/metrics
+```
+
+Результат:
+
+```text
+Grafana: 200
+Prometheus: 302
+Node Exporter: 200
+```
+![scr4](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/srvsup.png)
