@@ -45,7 +45,7 @@ Prometheus используется как источник данных для 
 ├── .gitignore
 └── README.md
 ````
-![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
+![scr2](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/tree.png)
 
 ## Конфигурация Docker Compose
 
@@ -170,3 +170,23 @@ datasources:
 ---
 
 ## Запуск стенда
+
+```bash
+docker compose up -d
+```
+
+Проверка контейнеров:
+
+```bash
+docker compose ps
+```
+
+Результат:
+
+```text
+NAME                       IMAGE                       STATUS          PORTS
+grafana                    grafana/grafana:latest      Up              0.0.0.0:3000->3000/tcp
+prometheus-node-exporter   prom/node-exporter:latest   Up              0.0.0.0:9100->9100/tcp
+prometheus-server          prom/prometheus:latest      Up              0.0.0.0:9090->9090/tcp
+```
+![scr3](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/dcup.png)
