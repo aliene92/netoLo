@@ -298,10 +298,10 @@ tcp-json-*
 ## Ответы
 #### "скриншот docker ps через 5 минут после старта всех контейнеров (их должно быть 5)"
 ![scr11](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/dockerup.png)
-\
+/
 #### "скриншот интерфейса kibana"
 ![scr12](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/webface.png)
-\
+/
 #### "docker-compose манифест (если вы не использовали директорию help)"
 ссылка на файл https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/files/docker-compose.yml
 текст файла:
