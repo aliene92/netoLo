@@ -155,3 +155,109 @@ yellow open   logstash-2026.09.16              nm3P4E_4QLKxyF1-MfJU0A   1   1   
 - `tcp-json-2026.09.16`.
 
 ## Проверка TCP JSON input в Logstash
+
+Logstash настроен на приём JSON-сообщений по TCP на порту `5000`.
+
+Тестовое сообщение:
+
+```bash
+TEST_ID="tcp-json-test-$(date +%s)"
+
+printf '{"message":"%s","level":"info","service":"tcp-test","homework":"netology-elk","source":"manual-tcp"}' "$TEST_ID" | nc -w 5 127.0.0.1 5000
+```
+
+Проверка поиска события в Elasticsearch:
+
+```bash
+curl -s "http://127.0.0.1:9200/tcp-json-*/_search?pretty" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "size": 5,
+    "_source": [
+      "@timestamp",
+      "message",
+      "level",
+      "service",
+      "homework",
+      "source",
+      "tags"
+    ],
+    "query": {
+      "match_phrase": {
+        "homework": "netology-elk"
+      }
+    }
+  }'
+```
+
+Результат:
+
+```json
+{
+  "took" : 30,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 0.5753642,
+    "hits" : [
+      {
+        "_index" : "tcp-json-2026.09.16",
+        "_type" : "_doc",
+        "_id" : "rQPSqqAB7IaXZauSghIR",
+        "_score" : 0.5753642,
+        "_source" : {
+          "@timestamp" : "2026-09-16T15:25:17.293Z",
+          "homework" : "netology-elk",
+          "level" : "info",
+          "service" : "tcp-test",
+          "source" : "manual-tcp",
+          "message" : "tcp-json-test-1789572234",
+          "tags" : [
+            "tcp-json"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+![scr6](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/search.png)
+
+## Проверка Filebeat
+
+Filebeat собирает Docker-логи с хоста из каталога:
+
+```text
+/var/lib/docker/containers/*/*.log
+```
+
+и отправляет их в Logstash на порт `5044`.
+
+После запуска Filebeat в Elasticsearch появился индекс:
+
+```text
+logstash-2026.09.16
+```
+
+Проверка:
+
+```bash
+curl -s http://127.0.0.1:9200/_cat/indices?v
+```
+
+Фрагмент результата:
+
+```text
+yellow open   logstash-2026.09.16              nm3P4E_4QLKxyF1-MfJU0A   1   1        604            0      1.2mb          1.2mb
+```
+
+## Kibana
