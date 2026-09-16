@@ -119,13 +119,6 @@ GRAFANA_SMTP_PASSWORD=APP_PASSWORD
 GRAFANA_SMTP_FROM=aliene-9-2@yandex.ru
 ```
 
-Файл `.gitignore`:
-
-```gitignore
-.env
-*.log
-```
-
 ---
 
 ## Конфигурация Prometheus
