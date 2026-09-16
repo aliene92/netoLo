@@ -64,3 +64,13 @@ kibana               docker.elastic.co/kibana/kibana:7.17.28                 "/b
 logstash             docker.elastic.co/logstash/logstash:7.17.28             "/usr/local/bin/dock…"   logstash             14 seconds ago   Up 12 seconds   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp, 0.0.0.0:5044->5044/tcp, [::]:5044->5044/tcp, 9600/tcp
 ```
 ![scr3](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/dockerup.png)
+
+Контейнеры:
+
+- `elasticsearch-hot`;
+- `elasticsearch-warm`;
+- `logstash`;
+- `kibana`;
+- `filebeat`.
+
+## Проверка Elasticsearch
