@@ -4,7 +4,7 @@
 
 В рамках домашнего задания был развёрнут на ВМ в яндекс клауд Elastic Stack в Docker Compose без использования директории `help`.
 
-![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw2/scr/vminf.png)
+![scr1](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/vminf.png)
 
 
 Состав стека:
