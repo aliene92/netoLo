@@ -460,3 +460,7 @@ output {
   }
 }
 ```
+#### "создайте несколько index-patterns из имеющихся"
+![scr13](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/indexpatern.png)
+![scr14](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/logstash.png)
+![scr15](https://github.com/aliene92/netoLo/blob/main/monitoring/hw3/scr/tcpjson.png)
