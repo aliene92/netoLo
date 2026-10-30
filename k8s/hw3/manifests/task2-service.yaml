@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: task2-service
+  labels:
+    app: task2-nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: task2-nginx
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
