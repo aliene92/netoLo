@@ -177,3 +177,64 @@ task1-service-ls6t4   [10.1.114.23],[10.1.114.24]
 ```
 
 ## Создание отдельного Pod с multitool
+
+Для проверки сетевого доступа был создан отдельный Pod `task1-client`.
+
+Манифест:
+
+[task1-multitool-pod.yaml](./manifests/task1-multitool-pod.yaml)
+
+Состояние Pod:
+
+```text
+NAME           READY   STATUS    RESTARTS   IP
+task1-client   1/1     Running   0          10.1.77.6
+```
+
+Внутреннее DNS-имя Service успешно разрешается:
+
+```text
+Name:    task1-service.default.svc.cluster.local
+Address: 10.152.183.76
+```
+
+Проверка nginx из отдельного Pod:
+
+```bash
+kubectl exec task1-client -- curl -I http://task1-service:80/
+```
+
+Результат:
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.31.3
+```
+
+Проверка multitool из отдельного Pod:
+
+```bash
+kubectl exec task1-client -- curl http://task1-service:8080/
+```
+
+Результат:
+
+```text
+WBITT Network MultiTool (with NGINX) -
+task1-app-d9b67697c-lxhz2 -
+10.1.77.4 -
+HTTP: 8080, HTTPS: 8443
+```
+
+При выполнении нескольких запросов Service распределил подключения между двумя репликами:
+
+```text
+task1-app-d9b67697c-9w8gg
+task1-app-d9b67697c-lxhz2
+```
+
+Скриншот Service, EndpointSlice, отдельного Pod и результатов запросов:
+
+![Доступ к приложениям через Service](./screenshots/scr4.png)
+
+# Задание 2. Запуск nginx после появления Service
