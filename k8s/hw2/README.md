@@ -36,7 +36,7 @@ kubectl get nodes
 
 ```text
 NAME       STATUS   ROLES           AGE   VERSION
-microk8s   Ready    control-plane   ...   ...
+microk8s   Ready    ...             ...   ...
 ```
 
 ---
