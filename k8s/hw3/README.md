@@ -82,7 +82,7 @@ env:
 
 ```text
 NAME                        READY   STATUS    RESTARTS
-task1-app-5575dc5d9-l5fqh   2/2     Running   0
+task1-app-fb85f46b5-xj8r8   2/2     Running   0
 ```
 
 Список прослушиваемых портов внутри Pod:
@@ -104,7 +104,7 @@ Server: nginx/1.31.3
 
 ```text
 WBITT Network MultiTool (with NGINX) -
-task1-app-5575dc5d9-l5fqh -
+task1-app-fb85f46b5-xj8r8 -
 10.1.114.21 -
 HTTP: 8080, HTTPS: 8443
 ```
