@@ -188,14 +188,14 @@ task1-service-ls6t4   [10.1.114.23],[10.1.114.24]
 
 ```text
 NAME           READY   STATUS    RESTARTS   IP
-task1-client   1/1     Running   0          10.1.77.6
+task1-client   1/1     Running   0          10.1.114.25
 ```
 
 Внутреннее DNS-имя Service успешно разрешается:
 
 ```text
 Name:    task1-service.default.svc.cluster.local
-Address: 10.152.183.76
+Address: 10.152.183.47
 ```
 
 Проверка nginx из отдельного Pod:
@@ -208,7 +208,7 @@ kubectl exec task1-client -- curl -I http://task1-service:80/
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.31.3
+Server: nginx/1.31.8
 ```
 
 Проверка multitool из отдельного Pod:
@@ -221,16 +221,16 @@ kubectl exec task1-client -- curl http://task1-service:8080/
 
 ```text
 WBITT Network MultiTool (with NGINX) -
-task1-app-d9b67697c-lxhz2 -
-10.1.77.4 -
+task1-app-fb85f46b5-ngtfb -
+10.1.114.24 -
 HTTP: 8080, HTTPS: 8443
 ```
 
 При выполнении нескольких запросов Service распределил подключения между двумя репликами:
 
 ```text
-task1-app-d9b67697c-9w8gg
-task1-app-d9b67697c-lxhz2
+task1-app-fb85f46b5-ngtfb
+task1-app-fb85f46b5-xj8r8
 ```
 
 Скриншот Service, EndpointSlice, отдельного Pod и результатов запросов:
