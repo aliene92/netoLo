@@ -114,3 +114,37 @@ HTTP: 8080, HTTPS: 8443
 ![Исправление конфликта портов](./screenshots/scr2.png)
 
 ## Масштабирование Deployment
+
+До масштабирования Deployment содержал одну реплику:
+
+```text
+NAME        READY   UP-TO-DATE   AVAILABLE
+task1-app   1/1     1            1
+```
+
+Количество реплик было увеличено командой:
+
+```bash
+kubectl scale deployment task1-app --replicas=2
+```
+
+После масштабирования Deployment содержит две доступные реплики:
+
+```text
+NAME        READY   UP-TO-DATE   AVAILABLE
+task1-app   2/2     2            2
+```
+
+Запущенные Pod:
+
+```text
+NAME                        READY   STATUS    RESTARTS   IP
+task1-app-fb85f46b5-ngtfb   2/2     Running   0          10.1.114.24
+task1-app-fb85f46b5-xj8r8   2/2     Running   0          10.1.114.23
+```
+
+Скриншот состояния до и после масштабирования:
+
+![Масштабирование Deployment](./screenshots/scr3.png)
+
+## Создание Service
