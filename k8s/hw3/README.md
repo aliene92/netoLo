@@ -259,3 +259,118 @@ done
 Основной контейнер nginx запускается только после успешного завершения Init-контейнера.
 
 ## Состояние до создания Service
+
+Deployment был применён до создания `task2-service`.
+
+Состояние Pod:
+
+```text
+NAME                           READY   STATUS     RESTARTS
+task2-nginx-7d579b8b77-dkn9t   0/1     Init:0/1   0
+```
+
+Init-контейнер был запущен и ожидал появления DNS-имени Service:
+
+```text
+server can't find task2-service.default.svc.cluster.local: NXDOMAIN
+Service task2-service is not available yet
+```
+
+Основной контейнер nginx ещё не был запущен:
+
+```text
+nginx | ready=false | waiting=PodInitializing
+```
+
+Попытка получить журнал nginx возвращала:
+
+```text
+container "nginx" is waiting to start: PodInitializing
+```
+
+Скриншот состояния до создания Service:
+
+![Pod до создания Service](./screenshots/scr5.png)
+
+## Создание Service
+
+Был создан Service типа `ClusterIP`.
+
+Манифест:
+
+[task2-service.yaml](./manifests/task2-service.yaml)
+
+Service имеет следующие параметры:
+
+```text
+NAME            TYPE        CLUSTER-IP       PORT(S)
+task2-service   ClusterIP   10.152.183.232   80/TCP
+```
+
+После создания Service его DNS-имя стало доступно:
+
+```text
+Name:    task2-service.default.svc.cluster.local
+Address: 10.152.183.232
+```
+
+Init-контейнер успешно завершил работу:
+
+```text
+wait-for-service | ready=true | exit-code=0 | reason=Completed
+```
+
+В журнале Init-контейнера появилось сообщение:
+
+```text
+Service task2-service is available
+```
+
+После завершения Init-контейнера был запущен основной контейнер nginx.
+
+Состояние Pod:
+
+```text
+NAME                           READY   STATUS    RESTARTS
+task2-nginx-7d579b8b77-dkn9t   1/1     Running   0
+```
+
+EndpointSlice Service:
+
+```text
+NAME                  ADDRESSES     READY   PORTS
+task2-service-jpfv9   [10.1.114.25]   true    80
+```
+
+Проверка nginx через Service:
+
+```bash
+kubectl exec task1-client -- curl -I http://task2-service:80/
+```
+
+Результат:
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.31.3
+```
+
+Скриншот состояния после создания Service:
+
+![Pod после создания Service](./screenshots/scr6.png)
+
+# Итог
+
+В ходе выполнения домашнего задания были продемонстрированы:
+
+- запуск нескольких контейнеров внутри одного Pod;
+- конфликт TCP-портов внутри общего сетевого пространства Pod;
+- изменение портов контейнера через переменные окружения;
+- масштабирование Deployment с одной до двух реплик;
+- создание Service типа ClusterIP;
+- доступ к приложению из отдельного Pod;
+- разрешение внутренних DNS-имён Kubernetes;
+- распределение запросов между репликами Deployment;
+- использование Init-контейнера;
+- блокировка запуска основного контейнера до выполнения заданного условия;
+- запуск nginx после появления требуемого Service.
