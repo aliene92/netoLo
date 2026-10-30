@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task2-nginx
+  labels:
+    app: task2-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task2-nginx
+  template:
+    metadata:
+      labels:
+        app: task2-nginx
+    spec:
+      initContainers:
+        - name: wait-for-service
+          image: busybox:1.36.1
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Waiting for task2-service..."
+              until nslookup task2-service.default.svc.cluster.local; do
+                echo "Service task2-service is not available yet"
+                sleep 2
+              done
+              echo "Service task2-service is available"
+
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
