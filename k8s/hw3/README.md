@@ -238,3 +238,24 @@ task1-app-fb85f46b5-xj8r8
 ![Доступ к приложениям через Service](./screenshots/scr4.png)
 
 # Задание 2. Запуск nginx после появления Service
+
+## Создание Deployment с Init-контейнером
+
+Был создан Deployment с основным контейнером nginx и Init-контейнером на базе BusyBox.
+
+Манифест:
+
+[task2-deployment.yaml](./manifests/task2-deployment.yaml)
+
+Init-контейнер выполняет проверку DNS-имени Service:
+
+```sh
+until nslookup task2-service.default.svc.cluster.local; do
+  echo "Service task2-service is not available yet"
+  sleep 2
+done
+```
+
+Основной контейнер nginx запускается только после успешного завершения Init-контейнера.
+
+## Состояние до создания Service
