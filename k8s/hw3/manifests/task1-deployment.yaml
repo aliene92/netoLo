@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task1-app
+  labels:
+    app: task1-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: task1-app
+  template:
+    metadata:
+      labels:
+        app: task1-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: nginx-http
+              containerPort: 80
+              protocol: TCP
+
+        - name: multitool
+          image: wbitt/network-multitool:3.22.2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: HTTPS_PORT
+              value: "8443"
+          ports:
+            - name: multitool-http
+              containerPort: 8080
+              protocol: TCP
+            - name: multitool-https
+              containerPort: 8443
+              protocol: TCP
