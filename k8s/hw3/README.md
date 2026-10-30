@@ -304,14 +304,14 @@ Service имеет следующие параметры:
 
 ```text
 NAME            TYPE        CLUSTER-IP       PORT(S)
-task2-service   ClusterIP   10.152.183.232   80/TCP
+task2-service   ClusterIP   10.152.183.56   80/TCP
 ```
 
 После создания Service его DNS-имя стало доступно:
 
 ```text
 Name:    task2-service.default.svc.cluster.local
-Address: 10.152.183.232
+Address: 10.152.183.56
 ```
 
 Init-контейнер успешно завершил работу:
@@ -352,7 +352,7 @@ kubectl exec task1-client -- curl -I http://task2-service:80/
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.31.3
+Server: nginx/1.31.8
 ```
 
 Скриншот состояния после создания Service:
