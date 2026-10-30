@@ -148,3 +148,32 @@ task1-app-fb85f46b5-xj8r8   2/2     Running   0          10.1.114.23
 ![Масштабирование Deployment](./screenshots/scr3.png)
 
 ## Создание Service
+
+Для доступа к репликам Deployment был создан Service типа `ClusterIP`.
+
+Манифест:
+
+[task1-service.yaml](./manifests/task1-service.yaml)
+
+Service предоставляет два порта:
+
+| Имя порта | Порт Service | TargetPort | Назначение |
+|---|---:|---|---|
+| nginx-http | 80 | nginx-http | nginx |
+| multitool-http | 8080 | multitool-http | multitool |
+
+Состояние Service:
+
+```text
+NAME            TYPE        CLUSTER-IP      PORT(S)
+task1-service   ClusterIP   10.152.183.47   80/TCP,8080/TCP
+```
+
+EndpointSlice содержит IP-адреса обеих реплик:
+
+```text
+NAME                  ADDRESSES
+task1-service-ls6t4   [10.1.114.23],[10.1.114.24]
+```
+
+## Создание отдельного Pod с multitool
