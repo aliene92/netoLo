@@ -7,7 +7,7 @@
 ```text
 Kubernetes:         v1.35.6
 Node:               k8s
-Node IP:            192.168.1.56
+Node IP:            153.51.117.14
 ОС:                 Ubuntu 24.04 LTS
 CNI:                Calico
 Ingress Controller: Traefik
