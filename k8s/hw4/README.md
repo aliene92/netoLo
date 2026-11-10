@@ -233,6 +233,7 @@ Service:
 NAME            TYPE        PORT
 hw14-frontend   ClusterIP   80/TCP
 ```
+![scr5](./scrs/scr5.png)
 
 ---
 
