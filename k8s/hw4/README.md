@@ -358,14 +358,14 @@ multitool:8080
 Команда:
 
 ```bash
-curl -i http://192.168.1.56/
+curl -i http://153.51.117.14/
 ```
 
 Результат:
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.31.3
+Server: nginx/1.31.8
 
 Welcome to nginx!
 ```
@@ -381,7 +381,7 @@ Welcome to nginx!
 Команда:
 
 ```bash
-curl -i http://192.168.1.56/api
+curl -i http://153.51.117.14/api
 ```
 
 Результат:
@@ -405,7 +405,7 @@ HTTP: 8080
 
 ```text
                          Kubernetes Node
-                         192.168.1.56
+                         153.51.117.14
                                |
               +----------------+----------------+
               |                                 |
@@ -463,8 +463,8 @@ curl http://153.51.117.14:30080/
 Проверка задания 2:
 
 ```bash
-curl http://192.168.1.56/
-curl http://192.168.1.56/api
+curl http://153.51.117.14/
+curl http://153.51.117.14/api
 ```
 
 Все созданные Deployment, Service и Ingress были успешно запущены и протестированы.
