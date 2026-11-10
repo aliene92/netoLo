@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw14-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hw14-frontend
+  template:
+    metadata:
+      labels:
+        app: hw14-frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
