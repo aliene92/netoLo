@@ -321,7 +321,6 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: hw14-strip-api
-  namespace: default
 spec:
   stripPrefix:
     prefixes:
