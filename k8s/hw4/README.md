@@ -159,7 +159,7 @@ HTTP: 8080
 
 ```text
 NAME            TYPE       CLUSTER-IP       PORT(S)
-hw14-nodeport   NodePort   10.152.183.189   80:30080/TCP
+hw14-nodeport   NodePort   10.152.183.111   80:30080/TCP
 ```
 
 Используемый NodePort:
@@ -171,7 +171,7 @@ hw14-nodeport   NodePort   10.152.183.189   80:30080/TCP
 Проверка:
 
 ```bash
-curl -i http://192.168.1.56:30080/
+ curl.exe -i http://153.51.117.14:30080/
 ```
 
 Результат:
@@ -187,6 +187,6 @@ Welcome to nginx!
 
 ### Скриншот
 
-![Проверка NodePort](images/task1-nodeport.png)
+![scr4](./scrs/scr4.png)
 
 ---
