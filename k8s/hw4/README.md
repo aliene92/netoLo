@@ -310,6 +310,7 @@ Path    Backend
 /api    hw14-backend:80
 /       hw14-frontend:80
 ```
+![scr7](./scrs/scr7.png)
 
 ---
 
@@ -322,6 +323,7 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: hw14-strip-api
+  namespace: default
 spec:
   stripPrefix:
     prefixes:
