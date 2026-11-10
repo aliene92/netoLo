@@ -310,8 +310,6 @@ Path    Backend
 /api    hw14-backend:80
 /       hw14-frontend:80
 ```
-![scr7](./scrs/scr7.png)
-
 ---
 
 ## Middleware для `/api`
