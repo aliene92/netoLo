@@ -145,7 +145,7 @@ WBITT Network MultiTool (with NGINX)
 HTTP: 8080
 ```
 
-![scr3](./scr3.png)
+![scr3](./scrs/scr3.png)
 
 ---
 
