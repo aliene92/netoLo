@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw14-multi-container
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hw14-multi-container
+  template:
+    metadata:
+      labels:
+        app: hw14-multi-container
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
+        - name: multitool
+          image: wbitt/network-multitool
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: HTTP_PORT
+              value: "8080"
