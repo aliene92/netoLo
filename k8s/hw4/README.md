@@ -185,7 +185,6 @@ Welcome to nginx!
 
 Таким образом nginx доступен снаружи Kubernetes через IP узла и NodePort.
 
-### Скриншот
 
 ![scr4](./scrs/scr4.png)
 
