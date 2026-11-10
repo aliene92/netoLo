@@ -72,7 +72,7 @@ READY   STATUS
 2/2     Running
 2/2     Running
 ```
-[scr1](https://github.com/aliene92/netoLo/blob/main/k8s/hw4/scrs/scr1.png)
+![scr1](https://github.com/aliene92/netoLo/blob/main/k8s/hw4/scrs/scr1.png)
 ---
 
 ## ClusterIP Service
