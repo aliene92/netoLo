@@ -270,6 +270,7 @@ Service:80 -> Pod:8080
 ```text
 hw14-backend   1/1   Running
 ```
+![scr6](./scrs/scr6.png)
 
 ---
 
