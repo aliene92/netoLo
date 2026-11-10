@@ -189,3 +189,280 @@ Welcome to nginx!
 ![scr4](./scrs/scr4.png)
 
 ---
+# Задание 2
+
+Необходимо создать:
+
+- frontend на базе nginx;
+- backend на базе `wbitt/network-multitool`;
+- отдельный Service для каждого приложения;
+- Ingress со следующей маршрутизацией:
+
+```text
+/     -> frontend
+/api  -> backend
+```
+
+---
+
+## Frontend
+
+Deployment:
+
+[`deployment-frontend.yaml`](deployment-frontend.yaml)
+
+Service:
+
+[`service-frontend.yaml`](service-frontend.yaml)
+
+Используемый контейнер:
+
+```text
+nginx
+```
+
+Состояние:
+
+```text
+hw14-frontend   1/1   Running
+```
+
+Service:
+
+```text
+NAME            TYPE        PORT
+hw14-frontend   ClusterIP   80/TCP
+```
+
+---
+
+## Backend
+
+Deployment:
+
+[`deployment-backend.yaml`](deployment-backend.yaml)
+
+Service:
+
+[`service-backend.yaml`](service-backend.yaml)
+
+Используемый образ:
+
+```text
+wbitt/network-multitool
+```
+
+Контейнер слушает:
+
+```text
+HTTP: 8080
+```
+
+Service предоставляет backend внутри Kubernetes на порту `80`:
+
+```text
+Service:80 -> Pod:8080
+```
+
+Состояние:
+
+```text
+hw14-backend   1/1   Running
+```
+
+---
+
+# Ingress
+
+Манифест:
+
+[`ingress.yaml`](ingress.yaml)
+
+В используемой версии MicroK8s addon `ingress` развёрнут на базе **Traefik**.
+
+В кластере созданы IngressClass:
+
+```text
+nginx
+public
+traefik
+```
+
+В данном задании используется:
+
+```yaml
+ingressClassName: traefik
+```
+
+Настроена маршрутизация:
+
+```text
+/     -> hw14-frontend:80
+/api  -> hw14-backend:80 -> container:8080
+```
+
+Фактическое описание Ingress:
+
+```text
+Path    Backend
+/api    hw14-backend:80
+/       hw14-frontend:80
+```
+
+---
+
+## Middleware для `/api`
+
+Так как текущий MicroK8s использует Traefik, для удаления префикса `/api` перед передачей запроса backend применяется Traefik Middleware:
+
+```yaml
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: hw14-strip-api
+spec:
+  stripPrefix:
+    prefixes:
+      - /api
+```
+
+Ingress подключает Middleware:
+
+```yaml
+traefik.ingress.kubernetes.io/router.middlewares: default-hw14-strip-api@kubernetescrd
+```
+
+Схема обработки запроса:
+
+```text
+Client
+  |
+  | GET /api
+  v
+Traefik Ingress
+  |
+  | StripPrefix /api
+  v
+hw14-backend:80
+  |
+  v
+multitool:8080
+```
+
+---
+
+## Проверка frontend через Ingress
+
+Команда:
+
+```bash
+curl -i http://192.168.1.56/
+```
+
+Результат:
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.31.3
+
+Welcome to nginx!
+```
+
+### Скриншот
+
+![Ingress frontend](images/task2-ingress-root.png)
+
+---
+
+## Проверка backend через Ingress
+
+Команда:
+
+```bash
+curl -i http://192.168.1.56/api
+```
+
+Результат:
+
+```text
+HTTP/1.1 200 OK
+
+WBITT Network MultiTool (with NGINX)
+HTTP: 8080
+```
+
+Запрос `/api` успешно проходит через Ingress и направляется в backend-приложение.
+
+### Скриншот
+
+![Ingress backend](images/task2-ingress-api.png)
+
+---
+
+# Итоговая схема
+
+```text
+                         Kubernetes Node
+                         192.168.1.56
+                               |
+              +----------------+----------------+
+              |                                 |
+              |                                 |
+        NodePort :30080                    Traefik Ingress
+              |                                 |
+              v                     +-----------+-----------+
+            nginx                   |                       |
+                                    | /                     | /api
+                                    v                       v
+                             hw14-frontend           hw14-backend
+                                  :80                     :80
+                                    |                       |
+                                    v                       v
+                               nginx:80              multitool:8080
+```
+
+---
+
+# Файлы домашнего задания
+
+```text
+.
+├── README.md
+├── deployment-multi-container.yaml
+├── service-clusterip.yaml
+├── service-nodeport.yaml
+├── deployment-frontend.yaml
+├── deployment-backend.yaml
+├── service-frontend.yaml
+├── service-backend.yaml
+└── ingress.yaml
+```
+
+---
+
+# Проверка ресурсов
+
+Основные команды для проверки:
+
+```bash
+microk8s kubectl get deployments
+microk8s kubectl get pods -o wide
+microk8s kubectl get svc
+microk8s kubectl get ingress
+microk8s kubectl get ingressclass
+```
+
+Проверка задания 1:
+
+```bash
+curl http://153.51.117.14:30080/
+```
+
+Проверка задания 2:
+
+```bash
+curl http://192.168.1.56/
+curl http://192.168.1.56/api
+```
+
+Все созданные Deployment, Service и Ingress были успешно запущены и протестированы.
