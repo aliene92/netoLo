@@ -145,9 +145,7 @@ WBITT Network MultiTool (with NGINX)
 HTTP: 8080
 ```
 
-### Скриншот
-
-![Проверка ClusterIP](images/task1-clusterip.png)
+![scr3](./scr3.png)
 
 ---
 
