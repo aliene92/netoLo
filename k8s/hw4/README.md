@@ -72,7 +72,8 @@ READY   STATUS
 2/2     Running
 2/2     Running
 ```
-![scr1](https://github.com/aliene92/netoLo/blob/main/k8s/hw4/scrs/scr1.png)
+![scr1](./scrs/scr1.png)
+
 ---
 
 ## ClusterIP Service
@@ -98,15 +99,7 @@ hw14-clusterip:9002 -> multitool:8080
 
 ```text
 NAME             TYPE        CLUSTER-IP      PORT(S)
-hw14-clusterip   ClusterIP   10.152.183.70   9001/TCP,9002/TCP
-```
-
-EndpointSlice содержал адреса трёх Pod:
-
-```text
-10.1.77.8
-10.1.77.9
-10.1.77.10
+hw14-clusterip   ClusterIP   10.152.183.247   9001/TCP,9002/TCP
 ```
 
 ### Проверка nginx
@@ -126,10 +119,11 @@ microk8s kubectl run hw14-test-nginx \
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.31.3
+Server: nginx/1.31.8
 
 Welcome to nginx!
 ```
+![scr2](./scrs/scr2.png)
 
 ### Проверка Network MultiTool
 
