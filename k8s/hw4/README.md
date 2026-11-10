@@ -178,7 +178,7 @@ hw14-nodeport   NodePort   10.152.183.111   80:30080/TCP
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.31.3
+Server: nginx/1.31.8
 
 Welcome to nginx!
 ```
