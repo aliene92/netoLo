@@ -56,7 +56,7 @@ env:
 ```text
 Привет от Kubernetes!
 Эта страница загружена из ConfigMap.
-Домашнее задание 2.3 — ConfigMap, Secret и RBAC.
+Домашнее задание 6 — ConfigMap, Secret и RBAC.
 ```
 
 ![scr1](scrs/scr1.png)
