@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hw7-app.fullname" . }}-multitool
+  labels:
+    {{- include "hw7-app.labels" . | nindent 4 }}
+    app.kubernetes.io/component: multitool
+spec:
+  type: {{ .Values.multitool.service.type }}
+  selector:
+    app.kubernetes.io/name: {{ include "hw7-app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: multitool
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.multitool.service.port }}
+      targetPort: http
