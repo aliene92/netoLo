@@ -192,3 +192,169 @@ PV — Kubernetes-объект, описывающий хранилище. Са�
 ---
 
 # Задание 3. StorageClass
+
+Созданы:
+
+- StorageClass `hw5-local-storage`;
+- PersistentVolume `hw5-sc-pv`;
+- PersistentVolumeClaim `hw5-sc-pvc`;
+- Deployment `data-exchange-sc`.
+
+Манифест:
+
+[`sc.yaml`](sc.yaml)
+
+StorageClass:
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: hw5-local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+```
+
+`kubernetes.io/no-provisioner` не создаёт PV автоматически, поэтому local PV создаётся статически.
+
+Локальный путь:
+
+```text
+/var/lib/k8s-homework-5/sc
+```
+
+PV использует:
+
+```yaml
+local:
+  path: /var/lib/k8s-homework-5/sc
+```
+
+Для привязки local volume к физической ноде задан `nodeAffinity`:
+
+```yaml
+nodeAffinity:
+  required:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - k8s
+```
+
+После запуска:
+
+```text
+hw5-local-storage   kubernetes.io/no-provisioner   WaitForFirstConsumer
+hw5-sc-pv           Bound
+hw5-sc-pvc          Bound
+data-exchange-sc-*   2/2 Running
+```
+
+![StorageClass, PV, PVC и Pod](images/task3-storageclass-pv-pvc.png)
+
+## Reclaim policy
+
+В выводе самого StorageClass отображается `RECLAIMPOLICY: Delete`, поскольку поле `reclaimPolicy` в StorageClass явно не задавалось.
+
+При этом используется `kubernetes.io/no-provisioner`, то есть динамического создания PV нет. Статический PV `hw5-sc-pv` имеет собственную явно заданную политику:
+
+```yaml
+persistentVolumeReclaimPolicy: Retain
+```
+
+Поэтому фактическая reclaim policy используемого PV — `Retain`.
+
+## Проверка данных
+
+`busybox` пишет данные в:
+
+```text
+/data/storageclass.log
+```
+
+`multitool` читает тот же файл:
+
+```bash
+POD="$(microk8s kubectl get pod -n hw5 -l app=data-exchange-sc -o jsonpath='{.items[0].metadata.name}')"
+
+microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/storageclass.log
+```
+
+Новые строки появляются примерно каждые 5 секунд.
+
+Тот же файл присутствует на ноде:
+
+```text
+/var/lib/k8s-homework-5/sc/storageclass.log
+```
+
+![Чтение файла через StorageClass/PVC](images/task3-tail.png)
+
+---
+
+# Итог
+
+В ходе работы проверены три механизма хранения Kubernetes:
+
+| Задание | Тип хранения | Результат |
+|---|---|---|
+| 1 | `emptyDir` | Обмен файлами между контейнерами одного Pod |
+| 2 | Статический PV + PVC + `hostPath` | Проверены `Bound`, `Released`, `Retain` и сохранение файлов |
+| 3 | StorageClass + local PV + PVC | Проверены `no-provisioner`, `WaitForFirstConsumer` и `nodeAffinity` |
+
+Ключевые результаты:
+
+- `busybox` и `multitool` успешно обмениваются данными через `emptyDir`;
+- статический PV/PVC успешно связываются в состоянии `Bound`;
+- после удаления PVC PV с политикой `Retain` переходит в `Released`;
+- файл сохраняется после удаления PVC и после удаления объекта PV;
+- StorageClass `hw5-local-storage` работает с `kubernetes.io/no-provisioner`;
+- local PV связан с нодой `k8s` через `nodeAffinity`;
+- приложение через StorageClass/PVC успешно использует persistent data.
+
+---
+
+# Структура задания
+
+```text
+.
+├── README.md
+├── containers-data-exchange.yaml
+├── pv-pvc.yaml
+└── sc.yaml
+```
+
+# Проверка
+
+Задание 1:
+
+```bash
+microk8s kubectl get deployment data-exchange -n hw5
+microk8s kubectl get pods -n hw5 -l app=data-exchange
+```
+
+Задание 2 было намеренно очищено по условию работы. Сохранённый файл можно проверить:
+
+```bash
+ls -lah /var/lib/k8s-homework-5/pv/
+tail /var/lib/k8s-homework-5/pv/persistent.log
+```
+
+Для повторного создания:
+
+```bash
+microk8s kubectl apply -f pv-pvc.yaml
+```
+
+Задание 3:
+
+```bash
+microk8s kubectl get storageclass hw21-local-storage
+microk8s kubectl get pv hw21-sc-pv
+microk8s kubectl get pvc hw21-sc-pvc -n hw21
+microk8s kubectl get pods -n hw21 -l app=data-exchange-sc
+```
+
+Все задания выполнены, а результаты подтверждены скриншотами.
