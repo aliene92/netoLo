@@ -55,7 +55,7 @@ shared-data:
   Type: EmptyDir
 ```
 
-![scr1](images/scr1.png)
+![scr1](scrs/scr1.png)
 
 Проверка чтения из контейнера `multitool`:
 
@@ -67,7 +67,7 @@ microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/share
 
 Новые строки появляются примерно каждые 5 секунд.
 
-![scr2](images/scr2.png)
+![scr2](scrs/scr2.png)
 
 ## Пояснение
 
