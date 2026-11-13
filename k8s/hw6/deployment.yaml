@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hw23-web-app
-  namespace: hw23
+  name: hw6-web-app
+  namespace: hw6
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hw23-web-app
+      app: hw6-web-app
   template:
     metadata:
       labels:
-        app: hw23-web-app
+        app: hw6-web-app
     spec:
       containers:
         - name: nginx
@@ -38,18 +38,18 @@ spec:
       volumes:
         - name: web-content
           configMap:
-            name: hw23-web-content
+            name: hw6-web-content
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hw23-web-service
-  namespace: hw23
+  name: hw6-web-service
+  namespace: hw6
 spec:
   type: ClusterIP
   selector:
-    app: hw23-web-app
+    app: hw6-web-app
   ports:
     - name: http
       protocol: TCP
