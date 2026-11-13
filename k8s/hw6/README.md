@@ -121,7 +121,7 @@ curl -k \
 
 ```text
 HTTP/2 200
-server: nginx/1.31.3
+server: nginx/1.31.8
 ```
 
 Traefik реально отдаёт сертификат `CN/SAN=hw6.example.com`, а приложение возвращает страницу из ConfigMap.
@@ -133,5 +133,142 @@ Traefik реально отдаёт сертификат `CN/SAN=hw6.example.com
 ---
 
 # Задание 3. RBAC
+
+RBAC включён командой:
+
+```bash
+microk8s enable rbac
+```
+
+До включения API Server использовал:
+
+```text
+--authorization-mode=AlwaysAllow
+```
+
+После включения:
+
+```text
+--authorization-mode=RBAC,Node
+```
+
+## Пользователь developer
+
+Для пользователя создан отдельный X.509-сертификат.
+
+```bash
+openssl genrsa -out developer.key 2048
+openssl req -new -key developer.key -out developer.csr -subj "/CN=developer"
+```
+
+CSR подписан CA MicroK8s. Сертификат проверен:
+
+```text
+subject=CN=developer
+TLS Web Client Authentication
+developer.crt: OK
+```
+
+## Role
+
+Манифест: [`role-pod-reader.yaml`](role-pod-reader.yaml)
+
+Role `hw6-pod-reader` разрешает:
+
+```text
+pods:      get, list, watch
+pods/log:  get
+```
+
+Отдельного RBAC verb `describe` в Kubernetes нет: `kubectl describe pod` использует операции чтения API.
+
+## RoleBinding
+
+Манифест: [`rolebinding-developer.yaml`](rolebinding-developer.yaml)
+
+RoleBinding `hw6-developer-pod-reader` связывает пользователя `developer` с Role `hw6-pod-reader` в namespace `hw6`.
+
+## Проверка прав
+
+Разрешено:
+
+```text
+list pods:      yes
+get pod:        yes
+get pod logs:   yes
+```
+
+Запрещено:
+
+```text
+create pod:       no
+delete pod:       no
+get secrets:      no
+list deployments: no
+```
+
+Команда из задания работает:
+
+```bash
+microk8s kubectl get pods -n hw6 --as=developer
+```
+
+![RBAC developer permissions](images/task3-rbac-developer.png)
+
+## Проверка реальным X.509-пользователем
+
+Для `developer` создан отдельный kubeconfig с клиентским сертификатом.
+
+С его использованием успешно выполняются:
+
+```text
+get pods
+kubectl describe pod
+kubectl logs
+```
+
+Попытка получить TLS Secret возвращает `Forbidden`, и попытка удалить Pod также возвращает `Forbidden`.
+
+Это подтверждает, что пользователь действительно аутентифицируется клиентским сертификатом и получает только права, заданные Role.
+
+![Real X509 developer user](images/task3-x509-developer.png)
+
+---
+
+# Итог
+
+| Задание | Механизм | Результат |
+|---|---|---|
+| 1 | ConfigMap | HTML-страница подключена в nginx как файл |
+| 2 | Secret + TLS + Ingress | HTTPS работает через Traefik с самоподписанным сертификатом |
+| 3 | RBAC + X.509 | `developer` имеет только read-only доступ к Pod и логам |
+
+Ключевые результаты:
+
+- ConfigMap успешно используется nginx;
+- HTTPS отвечает `HTTP/2 200`;
+- TLS Secret имеет тип `kubernetes.io/tls`;
+- RBAC включён в MicroK8s;
+- `developer` аутентифицируется X.509-сертификатом;
+- пользователь может читать Pod, выполнять `describe` и читать логи;
+- пользователь не может читать Secrets или удалять Pod.
+
+---
+
+# Структура репозитория
+
+```text
+.
+├── README.md
+├── deployment.yaml
+├── configmap-web.yaml
+├── secret-tls.yaml
+├── ingress-tls.yaml
+├── role-pod-reader.yaml
+└── rolebinding-developer.yaml
+
+```
+
+Все задания выполнены и подтверждены скриншотами.
 
 
