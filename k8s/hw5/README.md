@@ -311,7 +311,7 @@ microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/storag
 - после удаления PVC PV с политикой `Retain` переходит в `Released`;
 - файл сохраняется после удаления PVC и после удаления объекта PV;
 - StorageClass `hw5-local-storage` работает с `kubernetes.io/no-provisioner`;
-- local PV связан с нодой `k8s` через `nodeAffinity`;
+- local PV связан с нодой `k8s7` через `nodeAffinity`;
 - приложение через StorageClass/PVC успешно использует persistent data.
 
 ---
