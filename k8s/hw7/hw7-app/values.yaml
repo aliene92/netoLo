@@ -1,0 +1,20 @@
+nginx:
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: "1.28.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+
+multitool:
+  replicaCount: 1
+  image:
+    repository: wbitt/network-multitool
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  httpPort: 8080
+  service:
+    type: ClusterIP
+    port: 8080
