@@ -8,7 +8,7 @@
 Kubernetes:         v1.35.6
 Node:               k8s
 Node IP:            153.51.117.14
-ОС:                 Ubuntu 24.04 LTS
+ОС:                 Ubuntu 26.04 LTS
 CNI:                Calico
 Ingress Controller: Traefik
 ```
@@ -191,7 +191,7 @@ Welcome to nginx!
 ---
 # Задание 2
 
-Поменялся Node IP на 153.51.117.14
+Поменялся Node IP на 51.250.44.217
 
 Необходимо создать:
 
@@ -359,7 +359,7 @@ multitool:8080
 Команда:
 
 ```bash
-curl -i http://153.51.117.14/
+curl -i http://51.250.44.217/
 ```
 
 Результат:
@@ -373,7 +373,7 @@ Welcome to nginx!
 
 ### Скриншот
 
-![Ingress frontend](images/task2-ingress-root.png)
+![scr8](scrs/scr8.png)
 
 ---
 
@@ -382,7 +382,7 @@ Welcome to nginx!
 Команда:
 
 ```bash
-curl -i http://153.51.117.14/api
+curl -i http://51.250.44.217/api
 ```
 
 Результат:
@@ -398,7 +398,7 @@ HTTP: 8080
 
 ### Скриншот
 
-![Ingress backend](images/task2-ingress-api.png)
+![scr9](scrs/scr9.png)
 
 ---
 
@@ -460,12 +460,13 @@ microk8s kubectl get ingressclass
 ```bash
 curl http://153.51.117.14:30080/
 ```
-
+![scr4](./scrs/scr4.png)
 Проверка задания 2:
 
 ```bash
-curl http://153.51.117.14/
-curl http://153.51.117.14/api
+curl http://51.250.44.217/
+curl http://51.250.44.217/api
 ```
-
+![scr8](scrs/scr8.png)
+![scr9](scrs/scr9.png)
 Все созданные Deployment, Service и Ingress были успешно запущены и протестированы.
