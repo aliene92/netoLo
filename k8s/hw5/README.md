@@ -252,7 +252,7 @@ hw5-sc-pvc          Bound
 data-exchange-sc-*   2/2 Running
 ```
 
-![StorageClass, PV, PVC и Pod](images/task3-storageclass-pv-pvc.png)
+![scr7](scrs/scr7.png)
 
 ## Reclaim policy
 
@@ -290,7 +290,7 @@ microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/storag
 /var/lib/k8s-homework-5/sc/storageclass.log
 ```
 
-![Чтение файла через StorageClass/PVC](images/task3-tail.png)
+![scr8](scrs/scr8.png)
 
 ---
 
