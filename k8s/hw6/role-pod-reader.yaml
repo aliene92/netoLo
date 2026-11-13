@@ -1,8 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: hw23-pod-reader
-  namespace: hw23
+  name: hw6-pod-reader
+  namespace: hw6
 rules:
   - apiGroups:
       - ""
