@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hw7-app.fullname" . }}-multitool
+  labels:
+    {{- include "hw7-app.labels" . | nindent 4 }}
+    app.kubernetes.io/component: multitool
+spec:
+  replicas: {{ .Values.multitool.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "hw7-app.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: multitool
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "hw7-app.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: multitool
+    spec:
+      containers:
+        - name: multitool
+          image: "{{ .Values.multitool.image.repository }}:{{ .Values.multitool.image.tag }}"
+          imagePullPolicy: {{ .Values.multitool.image.pullPolicy }}
+          env:
+            - name: HTTP_PORT
+              value: {{ .Values.multitool.httpPort | quote }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.multitool.httpPort }}
+              protocol: TCP
