@@ -461,6 +461,7 @@ microk8s kubectl get ingressclass
 curl http://153.51.117.14:30080/
 ```
 ![scr4](./scrs/scr4.png)
+
 Проверка задания 2:
 
 ```bash
@@ -469,4 +470,5 @@ curl http://51.250.44.217/api
 ```
 ![scr8](scrs/scr8.png)
 ![scr9](scrs/scr9.png)
+
 Все созданные Deployment, Service и Ingress были успешно запущены и протестированы.
