@@ -290,7 +290,7 @@ microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/storag
 /var/lib/k8s-homework-5/sc/storageclass.log
 ```
 
-![scr8](scrs/scr8.png)
+![scr9](scrs/scr9.png)
 
 ---
 
