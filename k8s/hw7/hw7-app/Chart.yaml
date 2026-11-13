@@ -1,6 +1,6 @@
 apiVersion: v2
-name: hw24-app
-description: Netology Kubernetes Helm homework 2.4
+name: hw7-app
+description: Netology Kubernetes Helm homework 7
 type: application
 version: 0.1.0
 appVersion: "1.0"
