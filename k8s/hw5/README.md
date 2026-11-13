@@ -79,8 +79,8 @@ microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/share
 
 Созданы:
 
-- PersistentVolume `hw21-pv`;
-- PersistentVolumeClaim `hw21-pvc`;
+- PersistentVolume `hw5-pv`;
+- PersistentVolumeClaim `hw5-pvc`;
 - Deployment `data-exchange-pvc`.
 
 Манифест:
@@ -90,14 +90,14 @@ microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/share
 Локальное хранилище на ноде:
 
 ```text
-/var/lib/k8s-homework-2.1/pv
+/var/lib/k8s-homework-5/pv
 ```
 
 PV использует:
 
 ```yaml
 hostPath:
-  path: /var/lib/k8s-homework-2.1/pv
+  path: /var/lib/k8s-homework-5/pv
   type: Directory
 ```
 
@@ -110,7 +110,7 @@ Reclaim policy:  Retain
 Volume mode:     Filesystem
 ```
 
-PVC запрашивает `512Mi` и явно привязывается к `hw21-pv`.
+PVC запрашивает `512Mi` и явно привязывается к `hw5-pv`.
 
 Для статического PV без StorageClass у PV и PVC используется:
 
@@ -121,27 +121,27 @@ storageClassName: ""
 После создания:
 
 ```text
-hw21-pv    Bound
-hw21-pvc   Bound
+hw5-pv    Bound
+hw5-pvc   Bound
 Pod        2/2 Running
 ```
 
-![PV и PVC в состоянии Bound](images/task2-pv-pvc-bound.png)
+![scr3](scrs/scr3.png)
 
 `busybox` записывает данные в `/data/persistent.log`, а `multitool` читает тот же файл:
 
 ```bash
-POD="$(microk8s kubectl get pod -n hw21 -l app=data-exchange-pvc -o jsonpath='{.items[0].metadata.name}')"
+POD="$(microk8s kubectl get pod -n hw5 -l app=data-exchange-pvc -o jsonpath='{.items[0].metadata.name}')"
 
-microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/persistent.log
+microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/persistent.log
 ```
 
-![Чтение данных из PV](images/task2-tail.png)
+![scr4](scrs/scr4.png)
 
 Файл физически расположен на Kubernetes-ноде:
 
 ```text
-/var/lib/k8s-homework-2.1/pv/persistent.log
+/var/lib/k8s-homework-5/pv/persistent.log
 ```
 
 ## Удаление Deployment и PVC
@@ -149,8 +149,8 @@ microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/persi
 В рамках задания были удалены:
 
 ```bash
-microk8s kubectl delete deployment data-exchange-pvc -n hw21
-microk8s kubectl delete pvc hw21-pvc -n hw21
+microk8s kubectl delete deployment data-exchange-pvc -n hw5
+microk8s kubectl delete pvc hw5-pvc -n hw5
 ```
 
 После удаления PVC PV перешёл в состояние:
@@ -158,10 +158,10 @@ microk8s kubectl delete pvc hw21-pvc -n hw21
 ```text
 Status:          Released
 Reclaim Policy:  Retain
-Claim:           hw21/hw21-pvc
+Claim:           hw5/hw5-pvc
 ```
 
-![PV в состоянии Released](images/task2-pv-released.png)
+![scr5](scrs/scr5.png)
 
 ### Почему PV стал Released
 
@@ -172,18 +172,18 @@ Claim:           hw21/hw21-pvc
 После проверки PV был удалён:
 
 ```bash
-microk8s kubectl delete pv hw21-pv
+microk8s kubectl delete pv hw5-pv
 ```
 
 Kubernetes-объект PV исчез, но файл:
 
 ```text
-/var/lib/k8s-homework-2.1/pv/persistent.log
+/var/lib/k8s-homework-5/pv/persistent.log
 ```
 
 остался на локальном диске ноды.
 
-![Файл после удаления PV](images/task2-file-after-pv-delete.png)
+![scr6](scrs/scr6.png)
 
 ### Почему файл сохранился
 
