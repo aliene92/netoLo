@@ -6,7 +6,7 @@
 
 ```text
 Kubernetes:  v1.36.2
-Node:        k8s
+Node:        k8s7
 Node IP:     51.250.44.217
 OS:          Ubuntu 26.04 LTS
 Namespace:   hw5
@@ -60,9 +60,9 @@ shared-data:
 Проверка чтения из контейнера `multitool`:
 
 ```bash
-POD="$(microk8s kubectl get pod -n hw21 -l app=data-exchange -o jsonpath='{.items[0].metadata.name}')"
+POD="$(microk8s kubectl get pod -n hw5 -l app=data-exchange -o jsonpath='{.items[0].metadata.name}')"
 
-microk8s kubectl exec   -n hw21   "$POD"   -c multitool   -- tail -f /data/shared.log
+microk8s kubectl exec   -n hw5   "$POD"   -c multitool   -- tail -f /data/shared.log
 ```
 
 Новые строки появляются примерно каждые 5 секунд.
@@ -351,10 +351,10 @@ microk8s kubectl apply -f pv-pvc.yaml
 Задание 3:
 
 ```bash
-microk8s kubectl get storageclass hw21-local-storage
-microk8s kubectl get pv hw21-sc-pv
-microk8s kubectl get pvc hw21-sc-pvc -n hw21
-microk8s kubectl get pods -n hw21 -l app=data-exchange-sc
+microk8s kubectl get storageclass hw5-local-storage
+microk8s kubectl get pv hw5-sc-pv
+microk8s kubectl get pvc hw5-sc-pvc -n hw21
+microk8s kubectl get pods -n hw5 -l app=data-exchange-sc
 ```
 
 Все задания выполнены, а результаты подтверждены скриншотами.
