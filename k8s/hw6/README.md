@@ -213,25 +213,7 @@ list deployments: no
 microk8s kubectl get pods -n hw6 --as=developer
 ```
 
-![RBAC developer permissions](images/task3-rbac-developer.png)
-
-## Проверка реальным X.509-пользователем
-
-Для `developer` создан отдельный kubeconfig с клиентским сертификатом.
-
-С его использованием успешно выполняются:
-
-```text
-get pods
-kubectl describe pod
-kubectl logs
-```
-
-Попытка получить TLS Secret возвращает `Forbidden`, и попытка удалить Pod также возвращает `Forbidden`.
-
-Это подтверждает, что пользователь действительно аутентифицируется клиентским сертификатом и получает только права, заданные Role.
-
-![Real X509 developer user](images/task3-x509-developer.png)
+![scr3](scrs/scr3.png)
 
 ---
 
