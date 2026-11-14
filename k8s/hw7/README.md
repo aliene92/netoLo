@@ -162,7 +162,7 @@ hw7-app-0.1.0.tgz
 
 ### Скриншот
 
-![Helm chart validation](images/task1-helm-chart.png)
+![scr1](scrs/scr1.png)
 
 ---
 
