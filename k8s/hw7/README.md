@@ -219,6 +219,7 @@ microk8s helm3 install \
   --wait
 ```
 ![scr2](scrs/scr2.png)
+
 Начальная версия:
 
 ```text
