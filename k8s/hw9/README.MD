@@ -37,7 +37,7 @@ Ubuntu 26.04.5 LTS
 Версии основных компонентов:
 
 ```text
-Kubernetes: v1.35.7
+Kubernetes: v1.35.10
 containerd: 2.2.1
 CNI: Flannel v0.28.8
 ```
@@ -127,7 +127,7 @@ kubernetes-cni
 Версия:
 
 ```text
-v1.35.7
+v1.35.10
 ```
 
 Пакеты зафиксированы:
@@ -144,7 +144,7 @@ apt-mark hold kubelet kubeadm kubectl
 
 ```bash
 kubeadm init \
-  --kubernetes-version=v1.35.7 \
+  --kubernetes-version=v1.35.10 \
   --apiserver-advertise-address=192.168.1.80 \
   --pod-network-cidr=10.244.0.0/16 \
   --cri-socket=unix:///run/containerd/containerd.sock \
@@ -246,7 +246,7 @@ k8s-worker-4   Ready   <none>          192.168.1.84
 Все пять нод используют:
 
 ```text
-Kubernetes v1.35.7
+Kubernetes v1.35.10
 containerd://2.2.1
 ```
 
@@ -393,7 +393,7 @@ service/nginx-test unchanged (server dry run)
 
 ```text
 CRI:        containerd 2.2.1
-Kubernetes: v1.35.7
+Kubernetes: v1.35.10
 CNI:        Flannel v0.28.8
 Pod CIDR:   10.244.0.0/16
 ```
