@@ -167,3 +167,141 @@ hw7-app-0.1.0.tgz
 ---
 
 # Задание 2. Запустить две версии в разных namespace
+
+По условию необходимо:
+
+1. запустить одну версию приложения в `namespace=app1`;
+2. запустить вторую версию в том же `namespace=app1`;
+3. запустить третью версию в `namespace=app2`.
+
+Для этого использованы три независимых Helm release.
+
+---
+
+## Values для разных версий
+
+Созданы отдельные values-файлы:
+
+```text
+values-app1-v1.yaml
+values-app1-v1-upgraded.yaml
+values-app1-v2.yaml
+values-app2-v3.yaml
+```
+
+Версии nginx:
+
+```text
+app-v1: 1.28.0
+app-v2: 1.30.4
+app-v3: 1.31.0
+```
+
+После установки `app-v1` дополнительно обновляется до:
+
+```text
+1.28.3
+```
+
+---
+
+## Первый release — app-v1
+
+Установка:
+
+```bash
+microk8s helm3 install \
+  app-v1 \
+  ./hw7-app \
+  --namespace app1 \
+  --create-namespace \
+  -f values-app1-v1.yaml \
+  --wait
+```
+
+Начальная версия:
+
+```text
+nginx:1.28.0
+```
+
+---
+
+## Второй release — app-v2
+
+Устанавливается в тот же namespace `app1`:
+
+```bash
+microk8s helm3 install \
+  app-v2 \
+  ./hw7-app \
+  --namespace app1 \
+  -f values-app1-v2.yaml \
+  --wait
+```
+
+Версия:
+
+```text
+nginx:1.30.4
+```
+
+Таким образом в одном namespace одновременно существуют два независимых Helm release.
+
+---
+
+## Третий release — app-v3
+
+Устанавливается в namespace `app2`:
+
+```bash
+microk8s helm3 install \
+  app-v3 \
+  ./hw7-app \
+  --namespace app2 \
+  --create-namespace \
+  -f values-app2-v3.yaml \
+  --wait
+```
+
+Версия:
+
+```text
+nginx:1.31.0
+```
+
+---
+
+# Результат установки
+
+Итоговая схема:
+
+```text
+namespace app1
+├── release app-v1
+│   ├── nginx
+│   └── multitool
+│
+└── release app-v2
+    ├── nginx
+    └── multitool
+
+
+namespace app2
+└── release app-v3
+    ├── nginx
+    └── multitool
+```
+
+Helm:
+
+```text
+app-v1  app1  deployed
+app-v2  app1  deployed
+app-v3  app2  deployed
+```
+
+---
+
+# Обновление приложения через Helm
+
