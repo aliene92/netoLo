@@ -20,11 +20,11 @@
 
 | Роль | Hostname | IP |
 |---|---|---|
-| Control Plane | `k8s-master` | `00.168.1.80` |
-| Worker 1 | `k8s-worker-1` | `00.168.1.68` |
-| Worker 2 | `k8s-worker-2` | `00.168.1.69` |
-| Worker 3 | `k8s-worker-3` | `00.168.1.90` |
-| Worker 4 | `k8s-worker-4` | `00.168.1.84` |
+| Control Plane | `k8s-master` | `153.51.115.75` |
+| Worker 1 | `k8s-worker-1` | `153.51.113.7` |
+| Worker 2 | `k8s-worker-2` | `93.77.165.207` |
+| Worker 3 | `k8s-worker-3` | `153.51.116.241` |
+| Worker 4 | `k8s-worker-4` | `153.51.115.163` |
 
 Фактически использованная ОС:
 
@@ -55,8 +55,6 @@ CNI: Flannel v0.28.8
 - загрузка `overlay` и `br_netfilter`;
 - настройка `sysctl`;
 - установка и настройка `containerd`.
-
-На master root-раздел расширен примерно до 28 GiB, на worker-нодах — примерно до 18 GiB.
 
 ---
 
@@ -90,7 +88,7 @@ swapoff -a
 На всех пяти нодах установлен:
 
 ```text
-containerd 2.2.1
+containerd 2.4.2
 ```
 
 В `/etc/containerd/config.toml` включено:
@@ -145,7 +143,7 @@ apt-mark hold kubelet kubeadm kubectl
 ```bash
 kubeadm init \
   --kubernetes-version=v1.35.10 \
-  --apiserver-advertise-address=192.168.1.80 \
+  --apiserver-advertise-address=19168.1.80 \
   --pod-network-cidr=10.244.0.0/16 \
   --cri-socket=unix:///run/containerd/containerd.sock \
   --node-name=k8s-master
@@ -160,7 +158,7 @@ Your Kubernetes control-plane has initialized successfully!
 API Server:
 
 ```text
-192.168.1.80:6443
+19168.1.80:6443
 ```
 
 ---
@@ -185,7 +183,7 @@ kubectl get pod \
 Результат:
 
 ```text
-etcd-k8s-master   1/1   Running   ...   192.168.1.80   k8s-master
+etcd-k8s-master   1/1   Running   ...   19168.1.80   k8s-master
 ```
 
 Таким образом требование задания о размещении `etcd` на master выполнено.
@@ -215,7 +213,7 @@ Flannel v0.28.8
 Каждая worker-нода присоединена командой вида:
 
 ```bash
-kubeadm join 192.168.1.80:6443 \
+kubeadm join 19168.1.80:6443 \
   --token <TOKEN> \
   --discovery-token-ca-cert-hash sha256:<HASH> \
   --cri-socket unix:///run/containerd/containerd.sock
@@ -236,18 +234,18 @@ kubectl get nodes -o wide
 Результат:
 
 ```text
-k8s-master     Ready   control-plane   192.168.1.80
-k8s-worker-1   Ready   <none>          192.168.1.68
-k8s-worker-2   Ready   <none>          192.168.1.69
-k8s-worker-3   Ready   <none>          192.168.1.90
-k8s-worker-4   Ready   <none>          192.168.1.84
+k8s-master     Ready   control-plane   19168.1.80
+k8s-worker-1   Ready   <none>          19168.1.68
+k8s-worker-2   Ready   <none>          19168.1.69
+k8s-worker-3   Ready   <none>          19168.1.90
+k8s-worker-4   Ready   <none>          19168.1.84
 ```
 
 Все пять нод используют:
 
 ```text
 Kubernetes v1.35.10
-containerd://2.2.1
+containerd://2.4.2
 ```
 
 ### Скриншот
