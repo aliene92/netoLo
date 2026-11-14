@@ -20,11 +20,11 @@
 
 | Роль | Hostname | IP |
 |---|---|---|
-| Control Plane | `k8s-master` | `192.168.1.80` |
-| Worker 1 | `k8s-worker-1` | `192.168.1.68` |
-| Worker 2 | `k8s-worker-2` | `192.168.1.69` |
-| Worker 3 | `k8s-worker-3` | `192.168.1.90` |
-| Worker 4 | `k8s-worker-4` | `192.168.1.84` |
+| Control Plane | `k8s-master` | `00.168.1.80` |
+| Worker 1 | `k8s-worker-1` | `00.168.1.68` |
+| Worker 2 | `k8s-worker-2` | `00.168.1.69` |
+| Worker 3 | `k8s-worker-3` | `00.168.1.90` |
+| Worker 4 | `k8s-worker-4` | `00.168.1.84` |
 
 Фактически использованная ОС:
 
