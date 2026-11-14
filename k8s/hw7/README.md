@@ -218,14 +218,13 @@ microk8s helm3 install \
   -f values-app1-v1.yaml \
   --wait
 ```
-
+![scr2](scrs/scr2.png)
 Начальная версия:
 
 ```text
 nginx:1.28.0
 ```
-
-![scr2](scrs/scr2.png)
+![scr3](scrs/scr3.png)
 
 ---
 
