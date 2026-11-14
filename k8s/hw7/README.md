@@ -225,6 +225,8 @@ microk8s helm3 install \
 nginx:1.28.0
 ```
 
+![scr2](scrs/scr2.png)
+
 ---
 
 ## Второй release — app-v2
