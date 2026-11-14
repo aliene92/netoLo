@@ -241,12 +241,15 @@ microk8s helm3 install \
   -f values-app1-v2.yaml \
   --wait
 ```
+![scr4](scrs/scr4.png)
+
 
 Версия:
 
 ```text
 nginx:1.30.4
 ```
+![scr5](scrs/scr5.png)
 
 Таким образом в одном namespace одновременно существуют два независимых Helm release.
 
