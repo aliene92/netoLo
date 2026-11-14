@@ -339,12 +339,14 @@ microk8s helm3 upgrade \
   -f values-app1-v1-upgraded.yaml \
   --wait
 ```
+![scr76](scrs/scr76.png)
 
 После обновления:
 
 ```text
 nginx:1.28.3
 ```
+![scr77](scrs/scr77.png)
 
 История Helm:
 
