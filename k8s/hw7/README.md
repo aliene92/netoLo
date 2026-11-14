@@ -312,3 +312,194 @@ app-v3  app2  deployed
 
 # Обновление приложения через Helm
 
+Для демонстрации обновления приложения release `app-v1` был обновлён.
+
+До обновления:
+
+```text
+nginx:1.28.0
+```
+
+Values:
+
+```yaml
+nginx:
+  image:
+    tag: "1.28.0"
+```
+
+Обновление:
+
+```bash
+microk8s helm3 upgrade \
+  app-v1 \
+  ./hw7-app \
+  --namespace app1 \
+  -f values-app1-v1-upgraded.yaml \
+  --wait
+```
+
+После обновления:
+
+```text
+nginx:1.28.3
+```
+
+История Helm:
+
+```text
+REVISION  STATUS
+1         superseded
+2         deployed
+```
+
+Это подтверждает, что приложение обновлено через Helm release, а версия изменена через values.
+
+---
+
+# Текущее состояние Deployment
+
+## Namespace app1
+
+```text
+app-v1-hw7-app-multitool   wbitt/network-multitool:latest
+app-v1-hw7-app-nginx       nginx:1.28.3
+
+app-v2-hw7-app-multitool   wbitt/network-multitool:latest
+app-v2-hw7-app-nginx       nginx:1.30.4
+```
+
+## Namespace app2
+
+```text
+app-v3-hw7-app-multitool   wbitt/network-multitool:latest
+app-v3-hw7-app-nginx       nginx:1.31.0
+```
+
+### Скриншот Helm releases и Deployment
+
+![scr8](scrs/scr8.png)
+
+---
+
+# Проверка приложений
+
+Проверка каждого nginx выполнена через соответствующий ClusterIP Service.
+
+## app-v1
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.28.3
+```
+
+## app-v2
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.30.4
+```
+
+## app-v3
+
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.31.0
+```
+
+Таким образом подтверждено, что все три версии действительно запущены и обслуживают HTTP-запросы.
+
+### Скриншот
+
+![scr9](scrs/scr9.png)
+
+---
+
+# Файлы репозитория
+
+```text
+.
+├── README.md
+├── hw7-app
+│   ├── Chart.yaml
+│   ├── values.yaml
+│   └── templates
+│       ├── _helpers.tpl
+│       ├── multitool-deployment.yaml
+│       ├── multitool-service.yaml
+│       ├── nginx-deployment.yaml
+│       └── nginx-service.yaml
+├── hw24-app-0.1.0.tgz
+├── values-app1-v1.yaml
+├── values-app1-v1-upgraded.yaml
+├── values-app1-v2.yaml
+└── values-app2-v3.yaml
+ 
+```
+
+---
+
+# Основные команды проверки
+
+## Helm chart
+
+```bash
+microk8s helm3 lint ./hw7-app
+
+microk8s helm3 template \
+  demo \
+  ./hw7-app \
+  --namespace demo \
+  -f values-app1-v1.yaml
+```
+
+## Helm releases
+
+```bash
+microk8s helm3 list --all-namespaces
+```
+
+## Deployment
+
+```bash
+microk8s kubectl get deployment \
+  -n app1 \
+  -o custom-columns='NAME:.metadata.name,IMAGE:.spec.template.spec.containers[0].image'
+
+microk8s kubectl get deployment \
+  -n app2 \
+  -o custom-columns='NAME:.metadata.name,IMAGE:.spec.template.spec.containers[0].image'
+```
+
+## Helm history
+
+```bash
+microk8s helm3 history app-v1 -n app1
+```
+
+## Проверка nginx
+
+```bash
+curl -sSI http://<ClusterIP>/
+```
+
+---
+
+# Итог
+
+В ходе выполнения домашней работы:
+
+- создан собственный Helm chart;
+- nginx и multitool разворачиваются отдельными Deployment;
+- версии приложений вынесены в values;
+- chart успешно проходит `helm lint`;
+- chart успешно рендерится через `helm template`;
+- chart упакован в `.tgz`;
+- две версии запущены одновременно в namespace `app1`;
+- третья версия запущена в namespace `app2`;
+- выполнено обновление `app-v1` через `helm upgrade`;
+- версия nginx изменена с `1.28.0` на `1.28.3`;
+- Helm history содержит две revision;
+- все три nginx возвращают HTTP 200;
+- результаты подтверждены скриншотами.
+
