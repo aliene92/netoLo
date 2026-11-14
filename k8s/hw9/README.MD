@@ -143,7 +143,7 @@ apt-mark hold kubelet kubeadm kubectl
 ```bash
 kubeadm init \
   --kubernetes-version=v1.35.10 \
-  --apiserver-advertise-address=19168.1.80 \
+  --apiserver-advertise-address=153.51.115.75 \
   --pod-network-cidr=10.244.0.0/16 \
   --cri-socket=unix:///run/containerd/containerd.sock \
   --node-name=k8s-master
