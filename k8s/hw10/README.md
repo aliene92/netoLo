@@ -281,7 +281,7 @@ frontend -> backend -> cache
 
 ### Состояние кластера, приложений, сервисов и NetworkPolicy
 
-![scr7](scr3/scr7.png)
+![scr7](scrs/scr7.png)
 
 ### Проверка разрешённых и запрещённых соединений
 
