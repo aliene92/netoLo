@@ -235,11 +235,11 @@ kubectl get nodes -o wide
 Результат:
 
 ```text
-k8s-master     Ready   control-plane   19168.1.80
-k8s-worker-1   Ready   <none>          19168.1.68
-k8s-worker-2   Ready   <none>          19168.1.69
-k8s-worker-3   Ready   <none>          19168.1.90
-k8s-worker-4   Ready   <none>          19168.1.84
+k8s-master     Ready   control-plane   10.131.0.24
+k8s-worker-1   Ready   <none>          10.131.0.11
+k8s-worker-2   Ready   <none>          10.131.0.23
+k8s-worker-3   Ready   <none>          10.131.0.22
+k8s-worker-4   Ready   <none>          10.131.0.21
 ```
 
 Все пять нод используют:
