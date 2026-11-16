@@ -214,7 +214,7 @@ Flannel v0.28.8
 Каждая worker-нода присоединена командой вида:
 
 ```bash
-kubeadm join 19168.1.80:6443 \
+kubeadm join 10.131.0.24:6443 \
   --token <TOKEN> \
   --discovery-token-ca-cert-hash sha256:<HASH> \
   --cri-socket unix:///run/containerd/containerd.sock
@@ -251,7 +251,7 @@ containerd://2.4.2
 
 ### Скриншот
 
-![Kubernetes cluster nodes](images/task1-cluster-nodes.png)
+![scr2](scrs/scr2.png)
 
 ---
 
