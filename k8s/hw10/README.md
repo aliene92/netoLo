@@ -32,3 +32,35 @@ Calico используется как сетевой плагин и обесп
 ---
 
 ## Созданные приложения
+
+В namespace `app` созданы три Deployment:
+
+- `frontend`;
+- `backend`;
+- `cache`.
+
+Для каждого Deployment создан отдельный Service типа `ClusterIP`.
+
+Манифест приложений:
+
+[`application.yaml`](application.yaml)
+
+После запуска приложения работают в отдельных Pod:
+
+```text
+backend    1/1 Running
+cache      1/1 Running
+frontend   1/1 Running
+```
+
+Сервисы приложений:
+
+```text
+backend    ClusterIP   10.152.183.61    80/TCP
+cache      ClusterIP   10.152.183.17    80/TCP
+frontend   ClusterIP   10.152.183.178   80/TCP
+```
+
+---
+
+## Проверка сети до применения NetworkPolicy
