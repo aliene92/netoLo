@@ -281,11 +281,11 @@ frontend -> backend -> cache
 
 ### Состояние кластера, приложений, сервисов и NetworkPolicy
 
-![Resources](images/task1-resources.png)
+![scr7](scr3/scr7.png)
 
 ### Проверка разрешённых и запрещённых соединений
 
-![Network Policy Test](images/task1-network-policy-test.png)
+![scr8](scrs/scr8.png)
 
 ---
 
