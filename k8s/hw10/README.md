@@ -274,3 +274,49 @@ frontend -> backend -> cache
 ---
 
 ## Скриншоты
+
+### Состояние кластера, приложений, сервисов и NetworkPolicy
+
+![Resources](images/task1-resources.png)
+
+### Проверка разрешённых и запрещённых соединений
+
+![Network Policy Test](images/task1-network-policy-test.png)
+
+---
+
+## Файлы
+
+```text
+.
+├── README.md
+├── application.yaml
+├── network-policy-backend.yaml
+├── network-policy-cache.yaml
+├── network-policy-default-deny.yaml
+├── network-policy-dns.yaml
+├── network-policy-frontend.yaml
+└── check.sh
+```
+
+---
+
+## Результат
+
+С помощью Calico и Kubernetes NetworkPolicy настроена схема:
+
+```text
+frontend -> backend -> cache
+```
+
+При этом:
+
+- `frontend -> backend` разрешён;
+- `backend -> cache` разрешён;
+- `frontend -> cache` запрещён;
+- `backend -> frontend` запрещён;
+- `cache -> backend` запрещён;
+- `cache -> frontend` запрещён;
+- DNS-доступ к CoreDNS сохранён.
+
+Требования задания выполнены.
