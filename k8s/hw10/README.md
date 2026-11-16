@@ -21,7 +21,7 @@ frontend  --->  backend  --->  cache
 | Kubernetes | MicroK8s v1.35.6 |
 | ОС | Ubuntu 26.04 LTS |
 | Node | `k8s` |
-| IP node | `192.168.1.56` |
+| IP node | `153.51.115.75` |
 | Container Runtime | containerd 2.1.6 |
 | CNI | Calico |
 | Namespace | `app` |
