@@ -215,6 +215,7 @@ frontend  ----------------> backend ----------------> cache
 Дополнительно всем Pod разрешён DNS-трафик к CoreDNS.
 
 Остальные соединения между `frontend`, `backend` и `cache` запрещены.
+![scr4](scrs/scr4)
 
 ---
 
@@ -228,6 +229,7 @@ cache-from-backend    app=cache
 default-deny-all      <none>
 frontend-to-backend   app=frontend
 ```
+![scr5](scrs/scr5)
 
 ---
 
@@ -246,6 +248,7 @@ Backend разрешает имя cache:
 cache.app.svc.cluster.local
 Address: 10.152.183.17
 ```
+![scr6](scrs/scr6.png)
 
 ---
 
@@ -270,6 +273,7 @@ cache      -> frontend   : DENIED
 ```text
 frontend -> backend -> cache
 ```
+![scr4](scrs/scr4)
 
 ---
 
