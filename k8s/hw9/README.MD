@@ -280,6 +280,7 @@ Service:    nginx-test
 10.244.4.2   k8s-worker-3
 10.244.5.2   k8s-worker-4
 ```
+![scr3](scrs/scr3.png)
 
 Это подтверждает, что все четыре worker-ноды реально участвуют в scheduling.
 
