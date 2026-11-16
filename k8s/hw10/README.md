@@ -108,3 +108,169 @@ cache      -> backend    : ALLOWED
 ---
 
 ## Настройка NetworkPolicy
+
+Для реализации требуемой схемы созданы пять политик.
+
+### 1. Default Deny
+
+Файл:
+
+[`network-policy-default-deny.yaml`](network-policy-default-deny.yaml)
+
+Политика выбирает все Pod namespace `app`:
+
+```yaml
+podSelector: {}
+policyTypes:
+  - Ingress
+  - Egress
+```
+
+После её применения ingress и egress для Pod запрещены, если доступ явно не разрешён другими NetworkPolicy.
+
+### 2. Разрешение DNS
+
+Файл:
+
+[`network-policy-dns.yaml`](network-policy-dns.yaml)
+
+После запрета egress приложениям отдельно разрешён доступ к CoreDNS:
+
+```text
+app/* ---> kube-system/CoreDNS
+
+UDP/53
+TCP/53
+```
+
+CoreDNS выбирается по labels:
+
+```text
+namespace:
+kubernetes.io/metadata.name=kube-system
+
+pod:
+k8s-app=kube-dns
+```
+
+### 3. Frontend -> Backend
+
+Файл:
+
+[`network-policy-frontend.yaml`](network-policy-frontend.yaml)
+
+Для `frontend` разрешён исходящий TCP-трафик на порт `80` только к Pod с label:
+
+```text
+app=backend
+```
+
+```text
+frontend ---> backend:80
+```
+
+### 4. Backend
+
+Файл:
+
+[`network-policy-backend.yaml`](network-policy-backend.yaml)
+
+Ingress:
+
+```text
+frontend ---> backend:80
+```
+
+Egress:
+
+```text
+backend ---> cache:80
+```
+
+### 5. Cache
+
+Файл:
+
+[`network-policy-cache.yaml`](network-policy-cache.yaml)
+
+Для `cache` разрешён входящий TCP-трафик на порт `80` только от Pod с label:
+
+```text
+app=backend
+```
+
+```text
+backend ---> cache:80
+```
+
+---
+
+## Итоговая схема доступа
+
+```text
+                TCP/80                 TCP/80
+frontend  ----------------> backend ----------------> cache
+```
+
+Дополнительно всем Pod разрешён DNS-трафик к CoreDNS.
+
+Остальные соединения между `frontend`, `backend` и `cache` запрещены.
+
+---
+
+## Созданные NetworkPolicy
+
+```text
+NAME                  POD-SELECTOR
+allow-dns             <none>
+backend-access        app=backend
+cache-from-backend    app=cache
+default-deny-all      <none>
+frontend-to-backend   app=frontend
+```
+
+---
+
+## Проверка DNS после применения политик
+
+Frontend разрешает имя backend:
+
+```text
+backend.app.svc.cluster.local
+Address: 10.152.183.61
+```
+
+Backend разрешает имя cache:
+
+```text
+cache.app.svc.cluster.local
+Address: 10.152.183.17
+```
+
+---
+
+## Проверка разрешённого и запрещённого трафика
+
+```text
+--- REQUIRED CONNECTIONS ---
+
+frontend   -> backend    : ALLOWED
+backend    -> cache      : ALLOWED
+
+--- FORBIDDEN CONNECTIONS ---
+
+frontend   -> cache      : DENIED
+backend    -> frontend   : DENIED
+cache      -> backend    : DENIED
+cache      -> frontend   : DENIED
+```
+
+Разрешена только требуемая цепочка:
+
+```text
+frontend -> backend -> cache
+```
+
+---
+
+## Скриншоты
