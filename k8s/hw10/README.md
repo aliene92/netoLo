@@ -60,7 +60,7 @@ backend    ClusterIP   10.152.183.63    80/TCP
 cache      ClusterIP   10.152.183.247    80/TCP
 frontend   ClusterIP   10.152.183.161   80/TCP
 ```
-[scr1](scrs/scr1.png)
+![scr1](scrs/scr1.png)
 
 ---
 
