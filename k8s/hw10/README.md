@@ -65,3 +65,22 @@ frontend   ClusterIP   10.152.183.161   80/TCP
 ---
 
 ## Проверка сети до применения NetworkPolicy
+
+До создания политик в namespace `app` NetworkPolicy отсутствовали.
+
+Проверка соединений показала, что все направления были доступны:
+
+```text
+frontend   -> backend    : ALLOWED
+frontend   -> cache      : ALLOWED
+backend    -> frontend   : ALLOWED
+backend    -> cache      : ALLOWED
+cache      -> frontend   : ALLOWED
+cache      -> backend    : ALLOWED
+```
+
+Таким образом, до применения политик сетевой доступ между приложениями не был ограничен.
+
+---
+
+## Настройка NetworkPolicy
