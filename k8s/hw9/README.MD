@@ -143,7 +143,7 @@ apt-mark hold kubelet kubeadm kubectl
 ```bash
 kubeadm init \
   --kubernetes-version=v1.35.10 \
-  --apiserver-advertise-address=153.51.115.75 \
+  --apiserver-advertise-address=10.131.0.24 \
   --pod-network-cidr=10.244.0.0/16 \
   --cri-socket=unix:///run/containerd/containerd.sock \
   --node-name=k8s-master
@@ -158,7 +158,7 @@ Your Kubernetes control-plane has initialized successfully!
 API Server:
 
 ```text
-19168.1.80:6443
+10.131.0.24:6443
 ```
 
 ---
@@ -183,7 +183,7 @@ kubectl get pod \
 Результат:
 
 ```text
-etcd-k8s-master   1/1   Running   ...   19168.1.80   k8s-master
+etcd-k8s-master   1/1   Running   ...   10.131.0.24   k8s-master
 ```
 
 Таким образом требование задания о размещении `etcd` на master выполнено.
