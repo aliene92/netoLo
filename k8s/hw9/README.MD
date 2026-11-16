@@ -20,11 +20,11 @@
 
 | Роль | Hostname | IP |
 |---|---|---|
-| Control Plane | `k8s-master` | `153.51.115.75` |
-| Worker 1 | `k8s-worker-1` | `153.51.113.7` |
-| Worker 2 | `k8s-worker-2` | `93.77.165.207` |
-| Worker 3 | `k8s-worker-3` | `153.51.116.241` |
-| Worker 4 | `k8s-worker-4` | `153.51.115.163` |
+| Control Plane | `k8s-master` | `10.131.0.24` |
+| Worker 1 | `k8s-worker-1` | `10.131.0.11` |
+| Worker 2 | `k8s-worker-2` | `10.131.0.23` |
+| Worker 3 | `k8s-worker-3` | `10.131.0.22` |
+| Worker 4 | `k8s-worker-4` | `10.131.0.21` |
 
 Фактически использованная ОС:
 
@@ -187,6 +187,7 @@ etcd-k8s-master   1/1   Running   ...   19168.1.80   k8s-master
 ```
 
 Таким образом требование задания о размещении `etcd` на master выполнено.
+![scr1](scrs/scr1.png)
 
 ---
 
