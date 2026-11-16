@@ -303,7 +303,7 @@ ClusterIP
 ClusterIP:
 
 ```text
-10.102.108.101
+10.103.67.88
 ```
 
 Из временного Pod `hw9-client` выполнен:
@@ -316,7 +316,7 @@ DNS успешно разрешил Service:
 
 ```text
 nginx-test.hw9-test.svc.cluster.local
-Address: 10.102.108.101
+Address: 10.103.67.88
 ```
 
 Затем выполнен:
@@ -340,7 +340,7 @@ Welcome to nginx!
 
 ### Скриншот
 
-![Kubernetes network test](images/task1-network-test.png)
+![scr4](scrs/scr4.png)
 
 ---
 
@@ -365,6 +365,7 @@ namespace/hw9-test unchanged (server dry run)
 deployment.apps/nginx-test unchanged (server dry run)
 service/nginx-test unchanged (server dry run)
 ```
+![scr5](scrs/scr5.png)
 
 ---
 
