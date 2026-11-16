@@ -56,10 +56,11 @@ frontend   1/1 Running
 Сервисы приложений:
 
 ```text
-backend    ClusterIP   10.152.183.61    80/TCP
-cache      ClusterIP   10.152.183.17    80/TCP
-frontend   ClusterIP   10.152.183.178   80/TCP
+backend    ClusterIP   10.152.183.63    80/TCP
+cache      ClusterIP   10.152.183.247    80/TCP
+frontend   ClusterIP   10.152.183.161   80/TCP
 ```
+[scr1](scrs/scr1.png)
 
 ---
 
