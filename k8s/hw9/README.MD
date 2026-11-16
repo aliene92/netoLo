@@ -275,10 +275,10 @@ Service:    nginx-test
 Фактическое распределение:
 
 ```text
-10.244.1.2   k8s-worker-1
+10.244.5.2   k8s-worker-1
 10.244.2.2   k8s-worker-2
-10.244.4.2   k8s-worker-3
-10.244.5.2   k8s-worker-4
+10.244.3.2   k8s-worker-3
+10.244.4.2   k8s-worker-4
 ```
 ![scr3](scrs/scr3.png)
 
